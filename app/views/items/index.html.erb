@@ -1,0 +1,56 @@
+<div class="container-fluid text-center">    
+  <div class="row content items">
+    
+    
+    
+    <div class="col-sm-1 sidenav"></div>
+    
+    
+    
+    <div class="col-sm-10 text-left"> 
+      <div class="container-fluid">
+        <div class="well">
+        <h1>Checkout All The Cool Items!</h1>
+        
+    	  <div class="row">
+            <div id="imaginary_container"> 
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control"  placeholder="Search an Item" >
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>  
+                    </span>
+                </div>
+            </div>
+	      </div></br></br>
+	  
+
+        
+        <div class="container"> 
+        <div class="row">
+          <% @items.each do |item| %>
+          <div class="col-sm-3">
+            <div class="panel">
+              <div class="panel-heading"><%= item.name %></div>
+              <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
+              <div class="panel-footer"><%= item.description %></div><br>
+              <div class="text-center"><%= item.user.name %></div><br>
+              <div class="text-center"><%= link_to 'Borrow',  new_rental_path(:user_id => current_user.id , :item_id => item.id), class:'btn btn-default' %> | <%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-default' %></div><br>
+            </div>
+          </div>
+          <% end %>
+        </div>
+        </div><br><br>
+      </div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="col-sm-1 sidenav"></div>
+    
+    
+    
+  </div>
+</div>

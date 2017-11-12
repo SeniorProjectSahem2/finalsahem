@@ -1,0 +1,90 @@
+<%= form_for(@item) do |f| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field form-group">
+      <%= f.label :name, class: 'col-sm-2 control-label' %><br>
+      <div class="col-sm-10">
+      <%= f.text_field :name, class:'form-control' %>
+      </div>
+      </div><br>
+      
+   <div class="form-group">
+      <%= f.label :description, class: 'col-sm-2 control-label' %><br>
+      <div class="col-sm-10">
+      <%= f.text_field :description, class:'form-control' %>
+      </div>
+    </div><br>
+    
+    
+  <div class="form-group">
+    <%= f.label :size, class: 'col-sm-2 control-label' %><br>
+    <div class="col-sm-10">
+    <%= f.text_field :size, class:'form-control' %>
+  </div>
+  </div><br>
+  
+  
+  <div class="form-group">
+    <%= f.label :weight, class: 'col-sm-2 control-label' %><br>
+    <div class="col-sm-10">
+    <%= f.text_field :weight, class:'form-control' %>
+  </div>
+  </div> <br>
+  
+   <div class="form-group">
+    <%= f.label :quantity, class: 'col-sm-2 control-label' %><br>
+    <div class="col-sm-10">
+    <%= f.text_field :quantity, class:'form-control' %>
+  </div>
+  </div> <br>
+  
+  
+  <div class="form-group">
+    <%= f.label :daily_price, class: 'col-sm-2 control-label' %><br>
+    <div class="col-sm-10">
+    <%= f.text_field :daily_price, class:'form-control' %>
+  </div>
+  </div> <br>
+  
+  
+  <div class="form-group">
+    <%= f.label :weekly_price, class: 'col-sm-2 control-label' %><br>
+    <div class="col-sm-10">
+    <%= f.text_field :weekly_price, class:'form-control' %>
+  </div>
+  </div> <br>
+
+  <div class="form-group">
+    <%= f.label :monthly_price, class: 'col-sm-2 control-label' %><br>
+    <div class="col-sm-10">
+    <%= f.text_field :monthly_price, class:'form-control' %>
+  </div>
+  </div> <br>
+
+
+    <div class="form-group">
+      <%= f.label :category_id  , class: 'col-sm-2 control-label' %><br>
+      <div class="col-sm-10">
+      <%= f.collection_select  :category_id, Category.all,  :id , :name, :prompt => "Select category" %>
+      </div>
+    </div><br><br>
+  
+   <div class="actions form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit %>
+        <%= link_to 'Back', items_path, class:'btn btn-default' %>
+      </div>
+    </div><br><br>
+    
+<% end %>

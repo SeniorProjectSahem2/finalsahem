@@ -1,0 +1,37 @@
+<%= link_to 'New Rental', new_rental_path %>
+<p id="notice"><%= notice %>
+<div class="container">
+  <h2>Rental requests</h2>
+  <p>Below are your rental requests</p>            
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>User</th>
+        <th>Item</th>
+        <th>Start date</th>
+        <th>End date</th>
+        <th>Status</th>
+        <th colspan="2"></th>
+        <!--<th colspan="2"></th>-->
+      </tr>
+    </thead>
+    <tbody>
+      <% @rentals.each do |rentals| %>
+      <tr>
+        <td><%= rentals.user %></td>
+        <td><%= rentals.item %></td>
+        <!--<td><img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo" height=75 width=75></td>-->
+        <td><%= rentals.start_date %></td>
+        <td><%= rentals.end_date %></td>
+        <td><%= rentals.status %></td>
+        <td button type="submit" class="btn btn-success">Accept </td>
+        <td button type="submit" class="btn btn-danger">Decline</td>
+        <td><%= link_to 'Show', rentals %></td>
+        <td><%= link_to 'Destroy', rentals, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  
+</div>
