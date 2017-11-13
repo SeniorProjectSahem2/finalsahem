@@ -1,24 +1,98 @@
-<p id="notice"><%= notice %></p>
+<br><br><br>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+<div class="container-fluid text-center row" >    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+    </div>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @user.location_id %>
-</p>
+	<div class="col-sm-8 sidenav">
+		
+    <div id="content">
+      <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+		<li><a></a></li>
+		<li><a></a></li>
+		<li><a></a></li>
+		
+        <li class="active"><a href="#red" data-toggle="tab">My Profile</a>
+        </li>
+        <li><a href="#orange" data-toggle="tab">Rentals Request</a>
+        </li>
+        <li><a href="#yellow" data-toggle="tab">Item I Borrowed</a>
+        </li>
+        <li><a href="#green" data-toggle="tab">My Items</a>
+		<li><a></a></li>
+        <li><a></a></li>  
+		<li><a></a></li>  
+	
+		    
+      </ul>
+      
+    </div>
+    <div id="my-tab-content" class="tab-content">
+      <div class="tab-pane active" id="red">
+		  <br>
+	
+		<div class="account example">
+		</div>
+		
+		<%= render 'form' %>
+	
+      </div>
+     
+	  <div class="tab-pane" id="orange">
+		<br>
+    <h3>You don't have any request notifications.</h3>
+		<br>
+		<button type="submit" id="userbutt">Lend an Item?</button>
+        
+	  </div>
+     
+	  <div class="tab-pane" id="yellow">
+      <button type="button"  id="userbutt2" data-toggle="collapse" data-target="#current">Current Items</button>
+      <button type="button" id="userbutt2" data-toggle="collapse" data-target="#past">Past Items</button>
+      
+      <div id="current" class="collapse">
+          <h1> CURRENT ITEMS </h1>
+        </div>
+		
+      <div id="past" class="collapse">
+          <h1> PAST ITEMS </h1>
+        </div>
+	  </div>
+	  
+      <div class="tab-pane" id="green">
+    	<button type="button" id="userbutt2" data-toggle="collapse" data-target="#available" >Available Items</button> 
+        <button type="button" id="userbutt2" data-toggle="collapse" data-target="#notavailabe" >Non-Available Items</button>   
+       <div id="available" class="collapse">
+          <h1> AVAILABE ITEMS </h1>
+        </div>
+	
+      <div id="notavailabe" class="collapse">
+          <h1> NON-AVAILABLE ITEMS </h1>
+        </div>
+      </div>
+     
+     
+    </div>
+  </div>
+  </div>
+    
+   
 
-<p>
-  <strong>User type:</strong>
-  <%= @user.user_type %>
-</p>
+	<div class="col-sm-2 sidenav">
+	 </div>
+	 
+ </div>
+</div>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<br>
+			
+	<!--<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>-->
+ <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+
+
+
+
+
+ 

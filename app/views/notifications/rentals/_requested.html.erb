@@ -1,0 +1,5 @@
+<%= link_to rentals_path, class: "dropdown-item #{"unread" if !notification.read_at?}" do %>
+  <%= notification.actor.name %>
+  <%= notification.action %>
+  a <%= notification.notifiable_type.underscore.humanize.downcase %>
+<% end %>

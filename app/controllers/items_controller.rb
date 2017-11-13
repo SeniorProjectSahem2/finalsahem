@@ -1,15 +1,36 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-
+  before_action :authorize, excpt: [:show, :index]
   # GET /items
   # GET /items.json
   def index
     @items = Item.all
-  end
+    @categories = Category.all
+end
+
+def from_category
+    @selected = Item.where(:category_id => params[:category_id])
+    respond_to do |format|
+        format.js
+    end
+end
+
+  def authorize
+    if current_user.nil?
+      redirect_to sign_in , alert: "Needs to Login"
+    else
+      if @item && @item.user != current_user
+        redirect_to root_path, alert: "Not authorized only #{@item.user} has access to this item"
+      end
+    end
+end
+
+
 
   # GET /items/1
   # GET /items/1.json
   def show
+    @rentals= Rental.where(:category_id => params[:category_id])
   end
 
   # GET /items/new

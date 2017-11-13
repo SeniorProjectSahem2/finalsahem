@@ -11,12 +11,20 @@ class RentalsController < ApplicationController
   # GET /rentals/1.json
   def show
   end
+  
+  def change_to_accept
+    @rental = Rental.find params[:rental_id]
+    @rental.update_column(:status, "accepted") 
+    Notification.create(recipient: @rental.user, actor: current_user, action: "accepted", notifiable: @rental)
+    redirect_to rentals_url
+  end
 
   # GET /rentals/new
   def new
     @rental = Rental.new
     @rental.user = User.find(params[:user_id])
      @rental.item = Item.find(params[:item_id])
+     
   end
 
   # GET /rentals/1/edit
@@ -32,7 +40,7 @@ class RentalsController < ApplicationController
         format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
         format.json { render :show, status: :created, location: @rental }
         # Create the notifications
-        Notification.create(recipient: @rental.item.user, actor: current_user, action: "posted", notifiable: @rental)
+        Notification.create(recipient: @rental.item.user, actor: current_user, action: "requested", notifiable: @rental)
       
       else
         format.html { render :new }

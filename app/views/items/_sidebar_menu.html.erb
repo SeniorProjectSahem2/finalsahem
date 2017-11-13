@@ -1,0 +1,7 @@
+ <div class="col-sm-4">
+           <h3><span class="label label-danger">Categories</span></h3>
+            <% @categories.each do |category| %>
+     <a  class="list-group-item list-group-item-action"> <%= link_to category.name, fetch_items_path(:category_id => category.id), :remote => true %></a>
+    <% end %>
+    </div>
+    

@@ -9,12 +9,15 @@ Rails.application.routes.draw do
   devise_for :users
   resources :contracts
   resources :ratings
-  resources :rentals
-  resources :items
+  resources :rentals do
+    put :change_to_accept
+  end
+  resources :items 
   resources :categories
   resources :users
   resources :locations
   resources :user_types
+  get "/fetch_items" => 'items#from_category', as: 'fetch_items'
   root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -3,6 +3,12 @@ class Rental < ActiveRecord::Base
   belongs_to :user
   belongs_to :item
   has_one :contract
+  
+  scope :pending,        -> { where(status: 'pending') }
+  
+  def days
+    (end_date - start_date).to_i
+  end
   private
   def set_to_pending
     self.update_attribute(:status, "pending")

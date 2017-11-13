@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <title>sahem</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"> <!--For size to be consistent across all platform devices-->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 
@@ -16,8 +9,8 @@
 	<!-- Section 1 -->
 		
 	
-	<div id="home" class="container-fluid" style="background:transparent url('help.png')no-repeat center center ;background-size: cover;background-position: center;">
-		
+	<div class="container-fluid" >
+		<%= link_to image_tag('help.png'), root_path, id: "home" %>
 		
 		<div class="container-fluid text-center">    
 		  <div class="row content">
@@ -30,15 +23,14 @@
 		
 		    <div class="col-sm-8 text-left"> 
 			<br><br><br><br>
- 		    <p class="landingPagePar">Exactly What you Need</p>
-	  	    <h1 class="title">Welcome to Sahem</h1>	 
-			<br>
-		    </div>	
+ 		    <p id="homePar">Experience Surpasses Owning</p>
+	  	    <h1 id="homeh1">Welcome to Sahem</h1>	 
+			<br>	
 
 	  	  <!-- search engine code from https://bootsnipp.com/snippets/featured/stylish-input-using-icon-font -->
 	  	  <div class="row">
-	  	          <div class="col-sm-6 col-sm-offset-3">
-	  	              <div id="imaginary_container"> 
+	  	              <div class ="container-fluid"> 
+						 
 	  	                  <div class="input-group stylish-input-group">
 	  	                      <input type="text" class="form-control"  placeholder="Search an Item" >
 	  	                      <span class="input-group-addon">
@@ -48,9 +40,9 @@
 	  	                      </span>
 	  	                  </div>
 	  	              </div>
-	  	          </div>
+	  	         
 	  	  	</div>
-	    
+	    </div>
 			<div class="col-sm-2 sidenav">
 		      <div>
 		        <p></p>
@@ -65,9 +57,9 @@
 		
 	  
 
-<div class="carousel-caption">
+<div class="carousel-caption" id="homecarousel-caption">
 	<br><br>
-	<h3 class="title1"> Have an Item? <button type="submit" class="btn">Start Lending</button> </h3>
+	 <h2 id="homeh3">Have an Item? </h2> <h4 id="homeh3"><button type="submit" id="lendingButt">Start Lending</button> </h4>
 		
 		
 </div>
@@ -78,22 +70,22 @@
   
 	<div class="container-fluid text-center row" id="about">    
 	  <div class="row content">
-	    <div class="col-sm-3 sidenav">
+	    <div class="col-sm-2 sidenav">
 	      <p></p>
 	      <p></p>
 	      <p></p>
 	    </div>
 		
 		
-	    <div class="col-sm-6 text-left"> 
+	    <div class="col-sm-8 text-left"> 
 		<br>
-        <h2 class="whatissahem">What is Sahem</h2>
-	    <hr class="hr1">
+        <h2 id="homeh2">What is Sahem</h2>
+	    <hr id="homehr1">
 		<br>
-	    <p class="landingPagePar2">Sahem facilitates borrowing and lending items in Qatar. If you have stuff you don't need and can use the money or if you need to borrow items for a short time, this is the website for you!</p>
+	    <p id="homePar2">Sahem facilitates borrowing and lending items in Qatar. If you have stuff you don't need and can use the money or if you need to borrow items for a short time, this is the website for you!</p>
 	    </div>
 	    
-		<div class="col-sm-3 sidenav">
+		<div class="col-sm-2 sidenav">
 	      <div>
 	        <p></p>
 	      </div>
@@ -109,8 +101,8 @@
 	          <div class="row">
 	            <div class="col-lg-12 text-center">
 					<br><br>
-	              <h2 class="section-heading">We Value</h2>
-				   <hr class="hr2">
+	              <h2 id="homeh22">We Value</h2>
+				   <hr id="homehr2">
 	         
 	            </div>
 	          </div>
@@ -146,19 +138,19 @@
 
 	<div class="container-fluid text-center row" id="about">    
 	  <div class="row content">
-	    <div class="col-sm-3 sidenav">
+	    <div class="col-sm-2 sidenav">
 	      <p></p>
 	      <p></p>
 	      <p></p>
 	    </div>
 		
 		
-	    <div class="col-sm-6 text-left"> 
+	    <div class="col-sm-8 text-left"> 
 		<br>
-        <h2 class="whatissahem">Get in Touch</h2>
-	    <hr class="hr1">
+        <h2 id="homeh2">Get in Touch</h2>
+	    <hr id="homehr1">
 		<br>
-	    <p class="landingPagePar2">Sahem is committed to exceeding your needs. Questions, comments or special requests? We’d love to hear from you, so don’t hesitate to reach out today.</p>
+	    <p id="homePar2">Sahem is committed to exceeding your needs. Questions, comments or special requests? We’d love to hear from you, so don’t hesitate to reach out today.</p>
 		
 		<br>
 		
@@ -176,7 +168,7 @@
   	                      <div class="form-group">
   	                        <input type="email" class="form-control" id="InputEmail" placeholder="Enter E-mail Here">
   	                      </div>
-  	                      <div class="form-group ">
+  	                      <div class=",-group ">
   	                       <textarea  class="form-control" placeholder="Description"></textarea> 
   	                      </div>
   						  <br>
@@ -192,7 +184,7 @@
   	        </section>
 			
 	    
-		<div class="col-sm-3 sidenav">
+		<div class="col-sm-2 sidenav">
 	      <div>
 	        <p></p>
 	      </div>
@@ -205,4 +197,3 @@
 	
 	
 </body>
-</html>
