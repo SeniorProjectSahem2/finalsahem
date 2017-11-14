@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :ratings
   resources :rentals do
     put :change_to_accept
+    get :acceptance_msg
   end
   resources :items 
   resources :categories

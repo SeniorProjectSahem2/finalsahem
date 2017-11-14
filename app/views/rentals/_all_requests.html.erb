@@ -1,0 +1,28 @@
+<table class="table">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Item</th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th>Days requested</th>
+            <th colspan="2"></th>
+            <!--<th colspan="2"></th>-->
+          </tr>
+        </thead>
+        <tbody>
+          <% @rentals.each do |rentals| %>
+          <tr>
+            <td><%= rentals.user.name %></td>
+            <td><%= rentals.item.name %></td>
+            <!--<td><img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo" height=75 width=75></td>-->
+            <td><%= rentals.start_date %></td>
+            <td><%= rentals.end_date %></td>
+            <td><%= rentals.days %></td>
+    
+           <td> <%= link_to('Accept', rental_change_to_accept_path(:rental_id =>rentals.id), :method => :put, :confirm => "Sure?", class:'btn btn-success') %></td>
+             <td><%= link_to 'Decline', rentals, method: :delete , class:'btn btn-danger' %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>

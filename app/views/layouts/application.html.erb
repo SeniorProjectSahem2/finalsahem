@@ -30,14 +30,14 @@
         <li><%= link_to items_url do %> All Items <% end %></li>
         <li class="nav-divider"></li>
         <% if user_signed_in? %>
-          <li><%= link_to destroy_user_session_path, :method => :delete do %><i class="glyphicon glyphicon-log-out"></i> signout<% end %></li>
+          <li><%= link_to destroy_user_session_path, :method => :delete do %>Sign Out <i class="glyphicon glyphicon-log-out"></i><% end %></li>
           <li data-behavior="notifications" data-notifications='<%= render template: "notifications/index", formats: [:json] %>'> 
           <a class="dropdown-toggle nav-link" type="button" data-behavior="notifications-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span data-behavior="unread-count"></span> <i class="glyphicon glyphicon-bell"></i></a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenu1" data-behavior="notification-items"></div>
           </li>
-          <li><%= link_to  user_path(current_user.id) do %><i class="glyphicon glyphicon-user"> <%= current_user.name %></i><% end %></li>
+          <li><%= link_to  user_path(current_user.id) do %><%= current_user.name %> <i class="glyphicon glyphicon-user"></i><% end %></li>
           <% else %>
-          <li><%= link_to user_session_url do %><i class="glyphicon glyphicon-log-in"></i> signin<% end %></li>
+          <li><%= link_to user_session_url do %><i class="glyphicon glyphicon-log-in"></i> Sign In<% end %></li>
           <% end %>
       </ul>
     </div>
@@ -49,28 +49,28 @@
 <%= yield %>
 
 
-<footer class="footer ">
+<!--<footer class="footer ">-->
 
 
-    <a href="#"><i class="fa fa-facebook"></i></a>
-    <a href="#"><i class="fa fa-twitter"></i></a>
-    <a href="#"><i class="fa fa-linkedin"></i></a>
-    <a href="#"><i class="fa fa-github"></i></a>
+<!--    <a href="#"><i class="fa fa-facebook"></i></a>-->
+<!--    <a href="#"><i class="fa fa-twitter"></i></a>-->
+<!--    <a href="#"><i class="fa fa-linkedin"></i></a>-->
+<!--    <a href="#"><i class="fa fa-github"></i></a>-->
     
-    <br>
+<!--    <br>-->
 
-    <p class="footer-links">
-      <a href="#">Homepage</a>
-      ·
-      <a href="#">All Items</a>
-      ·
-      <a href="#">Add New Item</a>
-      ·
-      <a href="#">Sign In</a>
-    </p>
+<!--    <p class="footer-links">-->
+<!--      <a href="#">Homepage</a>-->
+<!--      ·-->
+<!--      <a href="#">All Items</a>-->
+<!--      ·-->
+<!--      <a href="#">Add New Item</a>-->
+<!--      ·-->
+<!--      <a href="#">Sign In</a>-->
+<!--    </p>-->
   
-    <p>SAHEM &copy; 2017</p>
+<!--    <p>SAHEM &copy; 2017</p>-->
 
-</footer>
+<!--</footer>-->
 
 </html>

@@ -15,6 +15,12 @@ def change_to_accept
   # GET /rentals/1
   # GET /rentals/1.json
   def show
+    @rentals = current_user.Rental_request
+  end
+
+# GET /rentals/1
+  # GET /rentals/1.json
+  def acceptance_msg
   end
 
   # GET /rentals/new

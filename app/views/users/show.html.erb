@@ -18,7 +18,7 @@
         </li>
         <li><a href="#orange" data-toggle="tab">Rentals Request</a>
         </li>
-        <li><a href="#yellow" data-toggle="tab">Item I Borrowed</a>
+        <li><a href="#yellow" data-toggle="tab">Items I Borrowed</a>
         </li>
         <li><a href="#green" data-toggle="tab">My Items</a>
 		<li><a></a></li>
@@ -42,13 +42,16 @@
      
 	  <div class="tab-pane" id="orange">
 	    
-		
+		<% if current_user.Rental_request.count ==0 %>
     <h3>You don't have any request notifications.</h3>
 		<br>
 		<div class="btn-group" role="group" aria-label="userShowButtons">
           
       <button type="button" class="btn btn-default btn-lg">Lend an Item</button>
     </div>
+    <% else %>
+    <%= render :partial =>'rentals/all_requests' %>
+    <% end %>
         
 	  </div>
      
@@ -86,17 +89,39 @@
         </div>
       
 	 </div>
-	  
+	    <!--My Items tab-->
       <div class="tab-pane" id="green">
-    	<button type="button" id="userbutt2" data-toggle="collapse" data-target="#available" >Available Items</button> 
-        <button type="button" id="userbutt2" data-toggle="collapse" data-target="#notavailabe" >Non-Available Items</button>   
-       <div id="available" class="collapse">
-          <h1> AVAILABE ITEMS </h1>
+    	
+	    <div id="content">
+      <ul id="tabs" class="nav nav-tabs1" data-tabs="tabs">
+        
+        <br>
+        
+        <div class="btn-group" role="group" aria-label="userShowButtons">
+          
+          <button type="button" class="btn btn-default btn-lg"><a href="#available" data-toggle="tab">Available Items</a>
+          <span class="glyphicon glyphicon-chevron-down"></span>
+          </button>
+          <button type="button" class="btn btn-default btn-lg"><a href="#nonavailable" data-toggle="tab">Non-Available Items</a>
+          <span class="glyphicon glyphicon-chevron-down"></span>
+          </button>
+          
         </div>
-	
-      <div id="notavailabe" class="collapse">
-          <h1> NON-AVAILABLE ITEMS </h1>
+        
+        
+      </ul>
+      </div>
+      
+      <div id="my-tab-content" class="tab-content">
+      <div class="tab-pane" id="available">
+		  <p>WORKED</p>
+		  </div>
+		
+			  <div class="tab-pane" id="nonavailable">
+			    <p>WORKED 2</p>
         </div>
+        </div>
+    	
       </div>
      
      
