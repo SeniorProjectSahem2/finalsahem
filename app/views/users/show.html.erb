@@ -41,25 +41,51 @@
       </div>
      
 	  <div class="tab-pane" id="orange">
-		<br>
+	    
+		
     <h3>You don't have any request notifications.</h3>
 		<br>
-		<button type="submit" id="userbutt">Lend an Item?</button>
+		<div class="btn-group" role="group" aria-label="userShowButtons">
+          
+      <button type="button" class="btn btn-default btn-lg">Lend an Item</button>
+    </div>
         
 	  </div>
      
 	  <div class="tab-pane" id="yellow">
-      <button type="button"  id="userbutt2" data-toggle="collapse" data-target="#current">Current Items</button>
-      <button type="button" id="userbutt2" data-toggle="collapse" data-target="#past">Past Items</button>
+	 
+	 <!--Items I borrowed tab-->
+	    <div id="content">
+      <ul id="tabs" class="nav nav-tabs1" data-tabs="tabs">
+        
+        <br>
+        
+        <div class="btn-group" role="group" aria-label="userShowButtons">
+          
+          <button type="button" class="btn btn-default btn-lg"><a href="#current" data-toggle="tab">Current Items</a>
+          <span class="glyphicon glyphicon-chevron-down"></span>
+          </button>
+          <button type="button" class="btn btn-default btn-lg"><a href="#past" data-toggle="tab">Past Items</a>
+          <span class="glyphicon glyphicon-chevron-down"></span>
+          </button>
+          
+        </div>
+        
+        
+      </ul>
+      </div>
       
-      <div id="current" class="collapse">
-          <h1> CURRENT ITEMS </h1>
-        </div>
+      <div id="my-tab-content" class="tab-content">
+      <div class="tab-pane" id="current">
+		  <p>WORKED</p>
+		  </div>
 		
-      <div id="past" class="collapse">
-          <h1> PAST ITEMS </h1>
+			  <div class="tab-pane" id="past">
+			    <p>WORKED 2</p>
         </div>
-	  </div>
+        </div>
+      
+	 </div>
 	  
       <div class="tab-pane" id="green">
     	<button type="button" id="userbutt2" data-toggle="collapse" data-target="#available" >Available Items</button> 

@@ -1,12 +1,12 @@
 <div class="container-fluid text-left row">    
 	  <div class="row content">
 	    
-	    <div class="col-sm-2 sidenav">
+	    <div class="col-sm-3 sidenav">
       </div>
       
-      <div class="col-sm-8"> 
+      <div class="col-sm-6"> 
     
-    <h2>Sign up</h2>
+    <h1>Sign up</h1>
     
     <div id= mylink>
       <%= render "devise/shared/links" %>
@@ -15,29 +15,30 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
   <div id= "myform" class="container">
+  
   <div id= "myfield" class="field">
     <%= f.label :first_name %> <br>
-    <%= f.text_field :first_name, autofocus: true%>
+    <%= f.text_field :first_name,:id => "fieldsize", autofocus: true%>
   </div>
+  
   <div id= "myfield" class="field">
     <%= f.label :last_name %> <br>
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name,:id => "fieldsize" %>
   </div>
   
   <div id= "myfield" class="field">
     <%= f.label :email %> <br>
-    <%= f.email_field :email %>
+    <%= f.email_field :email,:id => "fieldsize" %>
   </div>
   
   <div id= "myfield" class="field">
     <%= f.label :location %> <br>
-    <%= f.select :location_id, ['Doha', 'Al Wakrah', 'Umm Salal', 'Al Shahaneya', 'Al Rayyan', 'Al Khor', 'Al Shamal'] %>
+    <%= f.select :location_id, ['Doha', 'Al Wakrah', 'Umm Salal', 'Al Shahaneya', 'Al Rayyan', 'Al Khor', 'Al Shamal'], {}, :id => "fieldsize" %>
   </div>
   
   <div id= "myfield" class="field">
     <%= f.label :user_type %> <br>
-    <%= f.select :user_type, ['Individual', 'Business'] %>
-    <!--%= f.check_box :user_type %>-->
+    <%= f.select :user_type, ['Individual', 'Business'], {}, :id => "fieldsize" %>
   </div>
   
   <div id= "myfield" class="field">
@@ -45,29 +46,23 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %>
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password,:id => "fieldsize" %>
   </div>
 
   <div id= "myfield" class="field">
     <%= f.label :password_confirmation %> <br>
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, :id => "fieldsize" %>
   </div>
-
-  <div class="actions">
-    <br>
-    <%= f.submit "Sign up" %>
+<br>
+  <div id= "mybutton" class="actions">
+    <%= f.submit "Sign up",:id => "usernewbutt" %>
   </div>
 </div>
-<% end %>
-
-      </div>
+  <% end %>
+      </div> 
       
-      <div class="col-sm-2 sidenav">
+      <div class="col-sm-3 sidenav">
       </div>
     
     </div>
 </div>
-      
-
-
-

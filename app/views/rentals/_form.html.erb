@@ -1,11 +1,3 @@
-<div class="container-fluid text-left row">    
-	  <div class="row content">
-	    
-	    <div class="col-sm-2 sidenav">
-      </div>
-      
-      <div class="col-sm-8"> 
-
 <%= form_for(@rental) do |f| %>
   <% if @rental.errors.any? %>
     <div id="error_explanation">
@@ -24,26 +16,19 @@
   <%= f.hidden_field :item_id %>
  <%= f.hidden_field :status%>
 
-<div id= "myrequestform" class="container">  
-  <div class="field">
-    <%= f.label :start_date %>
+<div id= "myform" class="container">  
+  <div id="myfield" class="field">
+    <%= f.label :start_date %> <br />
     <%= f.date_select :start_date %>
   </div>
   
-  <div class="field">
-    <%= f.label :end_date %>
+  <div id="myfield"class="field">
+    <%= f.label :end_date %> <br />
     <%= f.date_select :end_date %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div id= "mybutton" class="actions"> <br />
+    <%= f.submit "Create rental",:id => "usernewbutt"%>
   </div>
 </div>
 <% end %>
-      
-      </div>
-      
-      <div class="col-sm-2 sidenav">
-      </div>
-  </div>
-</div>

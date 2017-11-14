@@ -1,6 +1,7 @@
 class Item < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
+  has_many :rentals
   #functions
   def prices
     price = Pricing.find(self.id)

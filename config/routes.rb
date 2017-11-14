@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :locations
   resources :user_types
   get "/fetch_items" => 'items#from_category', as: 'fetch_items'
+  get "/fetch_users_items" => 'items#from_users', as: 'fetch_users_items'
   root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

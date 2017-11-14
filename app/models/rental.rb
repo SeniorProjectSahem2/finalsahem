@@ -5,6 +5,7 @@ class Rental < ActiveRecord::Base
   has_one :contract
   
   scope :pending,        -> { where(status: 'pending') }
+
   
   def days
     (end_date - start_date).to_i
