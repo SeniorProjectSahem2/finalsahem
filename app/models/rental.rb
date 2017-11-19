@@ -1,11 +1,13 @@
 class Rental < ActiveRecord::Base
   after_create :set_to_pending
-  belongs_to :user
+  belongs_to :user 
   belongs_to :item
   has_one :contract
+  has_many :notifications , through: :user
   
   scope :pending,        -> { where(status: 'pending') }
-
+  scope :current,        -> { where(status: 'accepted').where("end_date>= ?", Date.today).where("start_date<= ?", Date.today) }
+  scope :past,        -> { where(status: 'accepted').where("end_date<= ?", Date.today)}
   
   def days
     (end_date - start_date).to_i
@@ -14,7 +16,4 @@ class Rental < ActiveRecord::Base
   def set_to_pending
     self.update_attribute(:status, "pending")
   end
-  # #validation 
-  #   validates_date :start_date, on_or_before: lambda { Date.current }, on_or_before_message: "cannot be in the future"
-  # validates_date :end_date, after: :start_date, on_or_before: lambda { Date.current }, allow_blank: true
-end
+  end

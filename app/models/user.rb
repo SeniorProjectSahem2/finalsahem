@@ -5,9 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :user_type
   has_many :rental_requests
-  has_many :rentals
-  has_many :items
-  has_many :notifications, foreign_key: :recipient_id
+  has_many :rentals 
+  has_many :items 
+  has_many :notifications, foreign_key: :recipient_id 
   
   #scopes
   scope :current_borrowed_items,      ->(id) { Item.joins(:rentals).where("user_id = ?", id).where("end_date>= ?", Date.today).where("status = ?","accepted") }

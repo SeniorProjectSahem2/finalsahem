@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
     @categories = Category.all
-end
+  end
 
 def from_category
     @selected = Item.where(:category_id => params[:category_id])
@@ -14,7 +14,6 @@ def from_category
         format.js
     end
 end
-
 
 
   #def authorize

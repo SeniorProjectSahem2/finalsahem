@@ -8,11 +8,18 @@ class ApplicationController < ActionController::Base
   def set_notifications
     @notifications = Notification.where(recipient: current_user).recent
   end
+  
+  def search
+  @q = "%#{params[:query]}%"
+  @items = Item.where("name LIKE ? or description LIKE ?", @q, @q)
+  @categories =Category.joins(:items).where(:items => {:id => @items.map{|x| x.id}}).distinct
+  render "items/index"
+end
   protected
 
   def configure_permitted_parameters
 
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone , :user_type_id])
 
   end
 end

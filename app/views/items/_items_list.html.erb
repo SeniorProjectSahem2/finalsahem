@@ -1,17 +1,60 @@
-<div class="row" id="items_div">
-  <% items.each do |item| %>
-  <div class="row">
-    <div class="col-sm-3">
-      <div class="panel" id="itemspanel">
-        <div class="panel-heading"><%= item.name %></div>
-        <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-        <div class="panel-footer"><%= item.description %></div><br>
-        <div class="text-center"><%= item.user.name %></div><br>
-        <div class="text-center"><%= link_to 'Borrow',  new_rental_path(:item_id => item.id), class:'btn btn-default' %></div>
+<div class="container-fluid text-center">    
+
+    <div class="col-sm-1 sidenav"></div>
+    
+    <div class="col-sm-10 text-center" > 
+
+      <div id="items_div">
+        
+        <% if user_signed_in? %>
+        
+          <% items.each do |item| %>
+          
+            <div class="panel col-sm-3" id="itemspanel">
+              <div class="panel-heading"><b><%= item.name %> (<%= item.weekly_price %> QR/ Week)</b></div>
+              <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
+              <div id="paneldiv"><b>Description:</b> <%= item.description.first(20) %></div><br>
+              <div id="paneldiv"><b>Posted by:</b> <%= item.user.name %></div><br>
+              <div id="paneldiv"><b>Current quantity:</b> <%= item.quantity_left %></div><br>
+              
+              <% if item.user_id== current_user.id %>
+              <div class="text-center"><%= link_to 'View Item', item, class:'btn btn-default' %> | <%= link_to 'Remove', item, method: :delete , class:'btn btn-danger' %></div>
+              <% else %>
+              <div class="text-center"><%= link_to 'View Item',  new_rental_path(:item_id => item.id), class:'btn btn-default' %></div>
+              <% end %>
+            </div>
+            
+            <% if items.count == 0%>
+              <h3 id="itemsheader">Sorry there is no items to view!</h3>
+            <% end %>
+          
+          <% end %>
+          
+        <% else %>
+          
+          <% items.each do |item| %>
+          
+            <div class="panel col-sm-3" id="itemspanel">
+              <div class="panel-heading"><b><%= item.name %> (<%= item.weekly_price %> QR/ Week)</b></div>
+              <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
+              <div id="paneldiv"><b>Description:</b> <%= item.description.first(20) %></div><br>
+              <div id="paneldiv"><b>Posted by:</b> <%= item.user.name %></div><br>
+              <div id="paneldiv"><b>Current quantity:</b> <%= item.quantity_left %></div><br>
+              <div class="text-center"><%= link_to 'View Item', item, class:'btn btn-default' %></div>
+            </div>
+            
+            <% if items.count == 0%>
+              <h3 id="itemsheader">Sorry there is no items to view!</h3>
+            <% end %>
+            
+          <% end %>
+        
+        <% end %>
+        
+      </div>
+    
     </div>
-    </div>
-  <% end %>
-  <% if items.count == 0%>
-    <h3 id="itemsheader">Sorry there is no items to view!</h3>
-  <% end %>
+    
+    <div class="col-sm-1 sidenav"></div>
+    
 </div>

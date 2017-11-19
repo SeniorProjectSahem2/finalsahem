@@ -17,19 +17,26 @@
 @import "bootstrap-sprockets"
 @import "bootstrap"
 
- 
+#searchbar-nav
+  background-color: #FC9444
+  padding-top: 7px
+  padding-right: 5%
+  padding-left: 5%
+
 .navbar
   margin-bottom: 0
   border-radius: 0
   background-color: white
-  border-bottom: 26px #FC9444 solid
 
 .navbar-header
   background-color: white
-  
-a 
-    color: black
-  
+ 
+a
+  color: black
+
+#footer
+    color: white
+
 .navbar-toggle
     float: right
     margin-right: 15px
@@ -42,12 +49,21 @@ a
 .navbar-brand
   height: 110px
   
+#search_navbar
+  margin-top: 5px
+  
 /* Set background color, text and some padding */
 footer 
-  background-color: whitesmoke
-  color: black
+  background-color: #FC9444
+  color: white
   padding: 5px
   padding-top: 20px
   text-align: center
   width: 100%
   
+.footer-links
+  color: white
+  
+  @media (max-width: 768px) 
+    .btn .btn-group 
+        width: 100%

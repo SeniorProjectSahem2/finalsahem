@@ -10,7 +10,7 @@ def change_to_accept
     @rental = Rental.find params[:rental_id]
     @rental.update_column(:status, "accepted") 
     Notification.create(recipient: @rental.user, actor: current_user, action: "accepted", notifiable: @rental)
-    redirect_to rentals_url
+    redirect_to rental_acceptance_msg_path
   end
   # GET /rentals/1
   # GET /rentals/1.json
@@ -88,6 +88,6 @@ def change_to_accept
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rental_params
-      params.require(:rental).permit(:item_id, :user_id, :start_date, :end_date)
+      params.require(:rental).permit(:item_id, :user_id, :start_date, :end_date , :quantity, :comment)
     end
 end

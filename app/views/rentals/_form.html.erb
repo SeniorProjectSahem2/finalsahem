@@ -1,34 +1,79 @@
-<%= form_for(@rental) do |f| %>
-  <% if @rental.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@rental.errors.count, "error") %> prohibited this rental from being saved:</h2>
+<div class="container-fluid text-center">    
+  <div class="row content">
+    
+    <div class="col-sm-2 sidenav"></div>
+    
+    <div class="col-sm-8">
 
-      <ul>
-      <% @rental.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <br><h1 class="text-center"><%= @rental.item.name %></h1>
+    
+    <h3><%= @rental.item.description %></h3>
+    
+    <h5>Category: <%= @rental.item.category.name %></h5>
+    
+    <h5>Size: <%= @rental.item.size %></h5>
+    
+    <h5>Weight: <%= @rental.item.weight %></h5>
+    
+    <h5>Quantity: <%= @rental.item.quantity_left %></h5>
+    
+    <h5>Daily Price: <%= @rental.item.quantity %></h5>
+    
+    <h5>Daily Price: <%= @rental.item.daily_price %></h5>
+    
+    <h5>Weekly Price: <%= @rental.item.weekly_price %></h5>
+    
+    <h5>Monthly Price: <%= @rental.item.monthly_price %></h5>
+    
+    <%= link_to 'Back', items_path, class:'btn btn-default' %>
+    
     </div>
-  <% end %>
-
-
-  <%= f.hidden_field :user_id %>
-  <%= f.hidden_field :item_id %>
- <%= f.hidden_field :status%>
-
-<div id= "myform" class="container">  
-  <div id="myfield" class="field">
-    <%= f.label :start_date %> <br />
-    <%= f.date_select :start_date %>
-  </div>
+    
+    <div class="row content">
+      
+    <%= form_for(@rental) do |f| %>
+    <% if @rental.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@rental.errors.count, "error") %> prohibited this rental from being saved:</h2>
   
-  <div id="myfield"class="field">
-    <%= f.label :end_date %> <br />
-    <%= f.date_select :end_date %>
-  </div>
+        <ul>
+        <% @rental.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+  
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :item_id %>
+    <%= f.hidden_field :status%>
 
-  <div id= "mybutton" class="actions"> <br />
-    <%= f.submit "Create rental",:id => "usernewbutt"%>
+    <div id= "myform" class="container">  
+      <div id="myfield" class="field">
+        <%= f.label :start_date %> <br />
+        <%= f.date_select :start_date %>
+      </div>
+      
+      <div id="myfield"class="field">
+        <%= f.label :end_date %> <br />
+        <%= f.date_select :end_date %>
+      </div>
+      
+     <div id="myfield"class="field">
+      <%= f.label :quantity %><br>
+      <%= f.select(:quantity, 1.upto(@rental.item.quantity_left).to_a) %>
+      </div>
+      
+      <div id= "mybutton" class="actions"> <br />
+        <%= f.submit "Create rental",:id => "usernewbutt"%>
+      </div>
+    </div>
+    <% end %>
+    
+    </div>
+    
+    <div class="col-sm-2 sidenav"></div>
+    
   </div>
 </div>
-<% end %>
