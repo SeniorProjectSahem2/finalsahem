@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
+  
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user! , except: [:index]
+  load_and_authorize_resource 
+  skip_authorize_resource :only => :from_category
   # GET /items
   # GET /items.json
   def index
@@ -8,12 +11,12 @@ class ItemsController < ApplicationController
     @categories = Category.all
   end
 
-def from_category
-    @selected = Item.where(:category_id => params[:category_id])
-    respond_to do |format|
-        format.js
-    end
-end
+  def from_category
+      @selected = Item.where(:category_id => params[:category_id])
+      respond_to do |format|
+          format.js
+      end
+  end
 
 
   #def authorize
@@ -44,6 +47,7 @@ end
 
   # GET /items/1/edit
   def edit
+    authorize! :update , @item 
   end
 
   # POST /items
@@ -65,6 +69,7 @@ end
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
+    authorize! :update , @item 
     respond_to do |format|
       if @item.update(item_params)
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
@@ -79,6 +84,7 @@ end
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
+    authorize! :destroy , @item 
     @item.destroy
     respond_to do |format|
       format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }

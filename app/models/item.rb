@@ -12,6 +12,9 @@ class Item < ActiveRecord::Base
     end
     return q
   end
+  def owner
+    return User.find(self.user_id)
+  end
   #functions
   def prices
     price = Pricing.find(self.id)

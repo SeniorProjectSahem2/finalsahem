@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if:  :devise_controller?
   before_action :set_notifications, if: :user_signed_in?
   
+  before_filter do
+    resource = controller_name.singularize.to_sym
+    method = "#{resource}_params"
+    params[resource] &&= send(method) if respond_to?(method, true)
+  end
+  
   def set_notifications
     @notifications = Notification.where(recipient: current_user).recent
   end

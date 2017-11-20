@@ -1,49 +1,46 @@
-    <h2 id="hisrentals"> Current rentals</h2>
-    <table class="table">
+    <h2 style="color:Black;"> Current rentals</h2>
+    <table class="table" style="color:Black;">
         <thead>
           <tr>
-            <th>User</th>
             <th>Item</th>
-            <th>Start date</th>
-            <th>End date</th>
-            <th>Days requested</th>
+            <th>User</th>
+            <th>Days</th>
+            <th>Ratings</th>
           </tr>
         </thead>
         <tbody>
           <% @rentals.each do |rentals| %>
           <tr>
-            <td><%= rentals.user.name %></td>
             <td><%= rentals.item.name %></td>
-            <!--<td><img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo" height=75 width=75></td>-->
-            <td><%= rentals.start_date %></td>
-            <td><%= rentals.end_date %></td>
+            <td><%= rentals.user.name %></td>
             <td><%= rentals.days %></td>
+            <td></td>
           </tr>
         <% end %>
         </tbody>
       </table>
       
-      <h2 id="hisrentals"> Past rentals</h2>
-      <table class="table">
+      <h2 style="color:Black;"> Past rentals</h2>
+      <table class="table" style="color:Black;">
         <thead>
           <tr>
-            <th>User</th>
             <th>Item</th>
-            <th>Start date</th>
-            <th>End date</th>
-            <th>Days requested</th>
+            <th>User</th>
+            <th>Days</th>
+            <th>Ratings</th>
+            <th>PDF</th>
           </tr>
         </thead>
         <tbody>
           <% @rentals.each do |rentals| %>
           <tr>
-            <td><%= rentals.user.name %></td>
             <td><%= rentals.item.name %></td>
-            <!--<td><img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo" height=75 width=75></td>-->
-            <td><%= rentals.start_date %></td>
-            <td><%= rentals.end_date %></td>
+            <td><%= rentals.user.name %></td>
             <td><%= rentals.days %></td>
+            <td></td>
+            <td></td>
           </tr>
         <% end %>
         </tbody>
       </table>
+      </div>

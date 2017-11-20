@@ -1,7 +1,7 @@
 class RentalsController < ApplicationController
   before_action :set_rental, only: [:show, :edit, :update, :destroy]
-
-  # GET /rentals
+  load_and_authorize_resource
+  # GET /rentals 
   # GET /rentals.json
   def index
     @rentals = current_user.Rental_request
@@ -35,6 +35,7 @@ def change_to_accept
 
   # GET /rentals/1/edit
   def edit
+    authorize! :update , @rental
   end
 
   # POST /rentals
@@ -58,6 +59,7 @@ def change_to_accept
   # PATCH/PUT /rentals/1
   # PATCH/PUT /rentals/1.json
   def update
+    authorize! :update , @rental
     respond_to do |format|
       if @rental.update(rental_params)
         format.html { redirect_to @rental, notice: 'Rental was successfully updated.' }
@@ -72,6 +74,7 @@ def change_to_accept
   # DELETE /rentals/1
   # DELETE /rentals/1.json
   def destroy
+    authorize! :destroy , @rental
     Notification.create(recipient: @rental.user, actor: current_user, action: "declined", notifiable: @rental)
     @rental.destroy
     respond_to do |format|

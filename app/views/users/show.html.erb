@@ -21,6 +21,7 @@
         <li><a href="#yellow" data-toggle="tab">Items I Borrowed</a>
         </li>
         <li><a href="#green" data-toggle="tab">My Items</a>
+        
 		<li><a></a></li>
         <li><a></a></li>  
 		<li><a></a></li>  
@@ -71,15 +72,26 @@
      
 	  <div class="tab-pane" id="yellow">
 	 
-	 <!--Items I borrowed tab-->
-	    <div id="content">
-      <ul id="tabs" class="nav nav-tabs1" data-tabs="tabs">
-        
-        <br>
-        
-        <div class="btn-group" id="usershowpadd" role="group" aria-label="userShowButtons">
+	   <% if current_user.Rental_request.count ==0 %>
+      <h3 id="usershowpadd">You don't have any rentals.</h3>
+		  <br>
+		  <div class="btn-group" role="group" aria-label="userShowButtons">
           
-          <%= render :partial =>'rentals/history' %>
+      <button type="button" class="btn btn-default btn-lg">Lend an Item</button>
+      </div>
+      <% else %>
+      <%= render :partial =>'rentals/history' %>
+      <% end %>
+      </div>
+	 <!--Items I borrowed tab-->
+	 <!--   <div id="content">-->
+  <!--    <ul id="tabs" class="nav nav-tabs1" data-tabs="tabs">-->
+        
+  <!--      <br>-->
+        
+  <!--      <div class="btn-group" id="usershowpadd" role="group" aria-label="userShowButtons">-->
+          
+  <!--        <!%= render :partial =>'rentals/history' %>-->
           
           <!--<button type="button" class="btn btn-default btn-lg"><a href="#current" data-toggle="tab">Current Items</a>-->
           <!--<span class="glyphicon glyphicon-chevron-down"></span>-->
@@ -88,11 +100,11 @@
           <!--<span class="glyphicon glyphicon-chevron-down"></span>-->
           <!--</button>-->
           
-        </div>
+      <!-- </div> -->
         
         
-      </ul>
-      </div>
+      <!--</ul>-->
+      <!--</div>-->
       
       <div id="my-tab-content" class="tab-content">
       <div class="tab-pane" id="current">

@@ -1,1 +1,0 @@
-$("#items_div").html("<%= escape_javascript(render partial: 'items_list', locals: { items: @items } ) %>");
