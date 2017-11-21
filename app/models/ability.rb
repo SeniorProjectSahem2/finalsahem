@@ -11,7 +11,7 @@ class Ability
         can :read, Item 
         can :read, Category 
         can :read, Rental do |rental|
-          rental.user==user
+          rental.user==user 
         end
         can :read, Notification do |item|
           rental.recipient==user

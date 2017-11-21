@@ -3,32 +3,36 @@
 
 <div class="container-fluid text-center" >    
   <div class="row content" >
-    
-    
-    
+
     <div class="col-sm-1 sidenav"></div>
-    
-    
     
     <div class="col-sm-10 text-center"> 
         
       <%= link_to 'All Items', items_path, class:'btn btn-default' %>
       <% @categories.each do |category| %>
-      <%= link_to category.name, fetch_items_path(:category_id => category.id), :remote => true, class:'btn btn-default' %><% end %>
+      <%= link_to category.name, fetch_items_path(:category_id => category.id), :remote => true, class:'btn btn-default' %>
+      <% end %>
       <br><br>
       
+      <div class="row">
+        <%= form_tag search_items_path do %>
+      	<div class="input-group stylish-input-group">
+        <input type="text" class="form-control" name ="query" placeholder="Search an Item" >
+        <span class="input-group-addon">
+            <button type="submit">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>  
+        </span>
+        </div>
+        <% end %>
+      </div>
+
     </div>
-    
-    
-    </div>
-    
-    
-    
-    <div class="col-sm-1 sidenav"></div>
-    
-    
-    
+
   </div>
+
+  <div class="col-sm-1 sidenav"></div>
+
 </div>
 
     

@@ -4,6 +4,18 @@ class Item < ActiveRecord::Base
   has_many :rentals , dependent: :destroy
   
   
+  
+  ##validations 
+  
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :quantity, presence: true
+  validates :daily_price, presence: true
+  validates :weekly_price, presence: true
+  validates :monthly_price, presence: true
+
+ ##############################################################
+ 
   def quantity_left
     q = self.quantity
     Rental.where(item_id: self.id).current.each do |r|

@@ -2,7 +2,7 @@
 
     <div class="col-sm-1 sidenav"></div>
     
-    <div class="col-sm-10 text-center" > 
+    <div class="col-sm-10 text-center"> 
 
       <div id="items_div">
         
@@ -10,7 +10,8 @@
         
           <% items.each do |item| %>
           
-            <div class="panel col-sm-3" id="itemspanel">
+          <div class="panel-group">
+            <div class="panel panel-default" id="itemspanel">
               <div class="panel-heading"><b><%= item.name %> (<%= item.weekly_price %> QR/ Week)</b></div>
               <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
               <div id="paneldiv"><b>Description:</b> <%= item.description.first(20) %></div><br>
@@ -23,6 +24,7 @@
               <div class="text-center"><%= link_to 'View Item',  new_rental_path(:item_id => item.id), class:'btn btn-default' %></div>
               <% end %>
             </div>
+          </div>
             
             <% if items.count == 0%>
               <h3 id="itemsheader">Sorry there is no items to view!</h3>
@@ -34,7 +36,8 @@
           
           <% items.each do |item| %>
           
-            <div class="panel col-sm-3" id="itemspanel">
+          <div class="panel-group">
+            <div class="panel" id="itemspanel">
               <div class="panel-heading"><b><%= item.name %> (<%= item.weekly_price %> QR/ Week)</b></div>
               <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
               <div id="paneldiv"><b>Description:</b> <%= item.description.first(20) %></div><br>
@@ -42,7 +45,8 @@
               <div id="paneldiv"><b>Current quantity:</b> <%= item.quantity_left %></div><br>
               <div class="text-center"><%= link_to 'View Item', item, class:'btn btn-default' %></div>
             </div>
-            
+          </div>
+          
             <% if items.count == 0%>
               <h3 id="itemsheader">Sorry there is no items to view!</h3>
             <% end %>

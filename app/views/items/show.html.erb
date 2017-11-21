@@ -1,41 +1,60 @@
 <div class="container-fluid text-center">    
   <div class="row content">
+  
+    <div class="col-sm-2 sidenav">
+    </div>
     
     
     
-    <div class="col-sm-2 sidenav"></div>
+    <div class="col-sm-8 text-center">
+  
+      <br><h1><%= @item.name %></h1>
+      
+      <h4 id="itemShowPar">Description: <%= @item.description %></h4>
+      <hr id="homehr2">
+      <br>
+      
+      <button id="itemShowButt">Category</button><br>
+      <button id="itemShowButt1"><%= @item.category.name %></button>
+      <br><br>
+      
+      <button id="itemShowButt">Item Dimensions</button>
+      <br><button id="itemShowButt1"><%= @item.size %></button>
+      <br><br>
+      
+      <button id="itemShowButt">Item Weight</button>
+      <br><button id="itemShowButt1"><%= @item.weight %></button>
+      <br><br>
+      
+      <button id="itemShowButt">Quantity</button>
+      <br><button id="itemShowButt1"><%= @item.quantity_left %></button>
+      <br><br>
+      
+      <button id="itemShowButt">Daily Price:</button>
+      <br><button id="itemShowButt1"><%= @item.daily_price %></button>
+      <br><br>
+      
+      <button id="itemShowButt">Weekly Price:</button>
+      <br><button id="itemShowButt1"><%= @item.weekly_price %></button>
+      <br><br>
+      
+      <button id="itemShowButt">Monthly Price:</button>
+      <br><button id="itemShowButt1"><%= @item.monthly_price %></button>
+      <br><br>
+     
     
-    
-    
-    <div class="col-sm-8 text-left">
-
-    
-    <br><h1 class="text-center"><%= @item.name %></h1>
-    
-    <h3><%= @item.description %></h3>
-    
-    <h5>Category: <%= @item.category.name %></h5>
-    
-    <h5>Size: <%= @item.size %></h5>
-    
-    <h5>Weight: <%= @item.weight %></h5>
-    
-    <h5>Quantity: <%= @item.quantity_left %></h5>
-    
-    <h5>Daily Price: <%= @item.daily_price %></h5>
-    
-    <h5>Weekly Price: <%= @item.weekly_price %></h5>
-    
-    <h5>Monthly Price: <%= @item.monthly_price %></h5>
-    
-    <%= link_to 'Edit', edit_item_path(@item), class:'btn btn-default' %> |
-    <%= link_to 'Back', items_path, class:'btn btn-default' %>
+      
+      <%= link_to 'Edit', edit_item_path(@item), class:'btn btn-default', id:'itemShowButt2' %> |
+      <%= link_to 'Back', items_path, class:'btn btn-default', id:'itemShowButt2' %>
+   
+    <br><br><br>
     
     </div>
     
     
     
-    <div class="col-sm-2 sidenav"></div>
+    <div class="col-sm-2 sidenav">
+    </div>
     
     
   

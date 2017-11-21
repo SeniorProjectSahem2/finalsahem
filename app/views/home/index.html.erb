@@ -11,18 +11,17 @@
 	<div class="container-fluid text-center">    
 	  <div class="row content">
 	    <div class="col-sm-2 sidenav">
-	      <p></p>
-	      <p></p>
-	      <p></p>
 	    </div>
 	
 	
 		<div class="col-sm-8 text-left"> 
 			<br><br>
-			<p id="homePar">Experience Surpasses Owning</p>
-			<h1 id="homeh1">Welcome to Sahem</h1>	 
+			<h1 id="homeh1">Welcome to Sahem</h1>
+			<p id="homePar">Lending and Borrowing<br>Event Equipment</p>
 			<br><br>
-		
+
+
+
 		<!-- search engine code from https://bootsnipp.com/snippets/featured/stylish-input-using-icon-font -->
 			<div class="row">
 			<div class ="container-fluid"> 
@@ -38,10 +37,15 @@
 	        </span>
 	        </div>
 	       <% end %>
-			        
+		   
 			    
 			</div>   
 			</div>
+			
+			<div class="text-right" id="homeAnchor">
+			<button id="anchorbutt"><h4><a id="homeAnchor-link" href="#tagtojumpto">Learn About Sahem <i class="fa fa-angle-double-down"></i></h4></a></button>
+			</div>
+			
 		</div>
 	
 		<div class="col-sm-2 sidenav">
@@ -56,10 +60,10 @@
 	  </div>
 	</div>
 
-	<div class="carousel-caption" id="homecarousel-caption">
+	<!--<div class="carousel-caption" id="homecarousel-caption">-->
 		
-		<h2 id="homeh3">Have an Item? </h2> <h5><button type="submit" id="lendingButt"><%= link_to 'Start Lending', new_item_path, id: "homeh23" %></button> </h5>
-	</div>
+	<!--	<h2 id="homeh3">Have an Item? </h2> <h5><button type="submit" id="lendingButt"><%= link_to 'Start Lending', new_item_path, id: "homeh23" %></button> </h5>-->
+	<!--</div>-->
 
 	</div>
 	
@@ -68,15 +72,15 @@
 	<div class="container-fluid text-center row" id="about">    
 	<div class="row content">
 	<div class="col-sm-4 sidenav">
-	  <p></p>
-	  <p></p>
-	  <p></p>
+	  
 	</div>
 	
 	
 	<div class="col-sm-4 text-left"> 
 		<br>
+		
 		<h2 id="homeh2">What is Sahem</h2>
+		<h3 id="tagtojumpto">Heading to About</h3>
 		<hr id="homehr1">
 		<br>
 		<p id="homePar2">Sahem facilitates borrowing and lending items in Qatar. If you have stuff you don't need and can use the money or if you need to borrow items for a short time, this is the website for you!</p>

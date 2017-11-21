@@ -1,6 +1,7 @@
 class RentalsController < ApplicationController
   before_action :set_rental, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
+  skip_authorize_resource :only => :acceptance_msg
   # GET /rentals 
   # GET /rentals.json
   def index

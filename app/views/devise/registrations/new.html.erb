@@ -17,32 +17,32 @@
   <div id= "myform" class="container">
   
   <div id= "myfield" class="field">
-    <%= f.label :first_name %> <br>
+    <%= f.label :first_name %>* <br>
     <%= f.text_field :first_name,:id => "fieldsize", autofocus: true%>
   </div>
   
   <div id= "myfield" class="field">
-    <%= f.label :last_name %> <br>
+    <%= f.label :last_name %>* <br>
     <%= f.text_field :last_name,:id => "fieldsize" %>
   </div>
   
   <div id= "myfield" class="field">
-    <%= f.label :email %> <br>
+    <%= f.label :email %>* <br>
     <%= f.email_field :email,:id => "fieldsize" %>
   </div>
   
   <div id= "myfield" class="field">
-    <%= f.label :location %> <br>
+    <%= f.label :location %>* <br>
     <%= f.select :location_id, ['Doha', 'Al Wakrah', 'Umm Salal', 'Al Shahaneya', 'Al Rayyan', 'Al Khor', 'Al Shamal'], {}, :id => "fieldsize" %>
   </div>
   
   <div id= "myfield" class="field">
-    <%= f.label :user_type_id %> <br>
+    <%= f.label :user_type_id %>* <br>
     <%= f.collection_select  :user_type_id, UserType.all,  :id , :name, :prompt => "Select user type" %>
   </div>
   
   <div id= "myfield" class="field">
-    <%= f.label :password %>
+    <%= f.label :password %>*
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %>
@@ -50,7 +50,7 @@
   </div>
 
   <div id= "myfield" class="field">
-    <%= f.label :password_confirmation %> <br>
+    <%= f.label :password_confirmation %>* <br>
     <%= f.password_field :password_confirmation, :id => "fieldsize" %>
   </div>
 <br>

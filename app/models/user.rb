@@ -9,6 +9,18 @@ class User < ActiveRecord::Base
   has_many :items 
   has_many :notifications, foreign_key: :recipient_id 
   
+  ##validations dont make sense here right?
+  
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :location_id, presence: true
+  validates :user_type_id, presence: true
+  validates :email, presence: true
+  
+  ##############################################################
+  
+  
+  
   #scopes
   scope :current_borrowed_items,      ->(id) { Item.joins(:rentals).where("user_id = ?", id).where("end_date>= ?", Date.today).where("status = ?","accepted") }
   scope :past_borrowed_items,      ->(user_id) { Rental.where("user_id = ?", user_id).where("end_date<= ?", Date.today).where("status = ?","accepted") }
