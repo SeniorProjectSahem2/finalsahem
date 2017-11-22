@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :transactions
   resources :notifications do
     collection do
       post :mark_as_read
@@ -6,7 +7,7 @@ Rails.application.routes.draw do
   end
   get 'home/index'
 
-  devise_for :users
+  devise_for :users 
   resources :contracts
   resources :ratings
   resources :rentals do
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
   get "/fetch_items" => 'items#from_category', as: 'fetch_items'
   get "/fetch_users_items" => 'items#from_users', as: 'fetch_users_items'
   post "items/search" => "items#search" , as: "search_items"
+  get "/unathorized_access" => 'shared#unathorized_access', as: 'unathorized_access'
   root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

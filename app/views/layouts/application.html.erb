@@ -35,14 +35,14 @@
       
       <ul class="nav navbar-nav navbar-right"><br><br>
       
-        <li class="active"><%= link_to root_path do%> Home  <% end %></li>
+        <li class="active"><%= link_to root_path do%> Home <% end %></li>
         <li class="nav-divider"></li>  
-        <li><%= link_to items_path do %> Equipment <b class = "caret"></b><% end %></li>
+        <li><%= link_to items_path do %> Browse All Equipment <% end %></li>
         <li class="nav-divider"></li>  
       
         <% if user_signed_in? %>
           
-          <li><%= link_to new_item_path do %>  Add New Items  <% end %></li>
+          <li><%= link_to new_item_path do %>  Add My Items  <% end %></li>
           <li class="nav-divider"></li>  
           <li class= "active"><%= link_to  user_path(current_user.id) do %><%= current_user.name %> <i class="glyphicon glyphicon-user"> </i><% end %></li>
           <li class="nav-divider"></li>        
@@ -68,16 +68,7 @@
     <ul class="nav navbar-nav" id="itembar-nav"> 
     
       <div class="row" id="orange">
-        <%= form_tag search_items_path do %>
-      	<div class="input-group stylish-input-group">
-        <input type="text" class="form-control" name ="query" placeholder="Search an Item" >
-        <span class="input-group-addon">
-            <button type="submit">
-                <span class="glyphicon glyphicon-search"></span>
-            </button>  
-        </span>
-        </div>
-        <% end %>
+        
       </div>
       
     </ul>  

@@ -31,6 +31,15 @@
     <%= f.email_field :email,:id => "fieldsize" %>
   </div>
   
+  
+   
+  <div id= "myfield" class="field">
+    <%= f.label :phone_number %>* <br>
+    <%= f.text_field :phone_number,:id => "fieldsize" %>
+  </div>
+  
+  
+  
   <div id= "myfield" class="field">
     <%= f.label :location %>* <br>
     <%= f.select :location_id, ['Doha', 'Al Wakrah', 'Umm Salal', 'Al Shahaneya', 'Al Rayyan', 'Al Khor', 'Al Shamal'], {}, :id => "fieldsize" %>
@@ -50,7 +59,7 @@
   </div>
 
   <div id= "myfield" class="field">
-    <%= f.label :password_confirmation %>* <br>
+    <%= f.label :password_confirmation %> <br>
     <%= f.password_field :password_confirmation, :id => "fieldsize" %>
   </div>
 <br>

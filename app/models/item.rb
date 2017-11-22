@@ -1,18 +1,20 @@
 class Item < ActiveRecord::Base
-  belongs_to :user 
+  belongs_to :user , dependent: :destroy
   belongs_to :category
   has_many :rentals , dependent: :destroy
   
-  
+   
   
   ##validations 
   
   validates :name, presence: true
   validates :description, presence: true
   validates :quantity, presence: true
-  validates :daily_price, presence: true
-  validates :weekly_price, presence: true
-  validates :monthly_price, presence: true
+  validates :size, presence: true
+  validates :weight, presence: true, numericality: { :greater_than_or_equal_to => 0 }
+  validates :daily_price, presence: true, numericality: { :greater_than_or_equal_to => 0 }
+  validates :weekly_price, presence: true, numericality: { :greater_than_or_equal_to => 0 }
+  validates :monthly_price, presence: true, numericality: { :greater_than_or_equal_to => 0 }
 
  ##############################################################
  

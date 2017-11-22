@@ -1,65 +1,80 @@
 <div class="container-fluid text-center">    
-  <div class="row content">
-  
-    <div class="col-sm-2 sidenav">
-    </div>
+
+    <div class="col-sm-1 sidenav"></div>
     
-    
-    
-    <div class="col-sm-8 text-center">
-  
-      <br><h1><%= @item.name %></h1>
+    <div class="col-sm-10 text-center">
       
-      <h4 id="itemShowPar">Description: <%= @item.description %></h4>
+      <div id="myform" class="container"> 
+      
+      <br><h1><b><%= @item.name %></b></h1>
       <hr id="homehr2">
       <br>
       
-      <button id="itemShowButt">Category</button><br>
-      <button id="itemShowButt1"><%= @item.category.name %></button>
-      <br><br>
       
-      <button id="itemShowButt">Item Dimensions</button>
-      <br><button id="itemShowButt1"><%= @item.size %></button>
-      <br><br>
-      
-      <button id="itemShowButt">Item Weight</button>
-      <br><button id="itemShowButt1"><%= @item.weight %></button>
-      <br><br>
-      
-      <button id="itemShowButt">Quantity</button>
-      <br><button id="itemShowButt1"><%= @item.quantity_left %></button>
-      <br><br>
-      
-      <button id="itemShowButt">Daily Price:</button>
-      <br><button id="itemShowButt1"><%= @item.daily_price %></button>
-      <br><br>
-      
-      <button id="itemShowButt">Weekly Price:</button>
-      <br><button id="itemShowButt1"><%= @item.weekly_price %></button>
-      <br><br>
-      
-      <button id="itemShowButt">Monthly Price:</button>
-      <br><button id="itemShowButt1"><%= @item.monthly_price %></button>
-      <br><br>
+      <div class="container-fluid text-left">
+        
+        <div class="itemShowAccount itemShowExample col-sm-6"></div>
+        
+        <div class="text-left col-sm-6">
+          
+          <div class="row">
+            <div class="col-sm-4" id="itemShowButt">Description</div><br>
+            <div class="col-sm-8" id="itemShowButt3"><%= @item.description %></div>
+          </div>
+        
+          <br>
+          
+          <div class="row">
+            <div class="col-sm-4" id="itemShowButt">Daily Price:</div> 
+            <div class="col-sm-8" id="itemShowButt1"><%= @item.daily_price %> QAR</div>
+          </div>
+          
+          <div class="row">
+            <div class="col-sm-4" id="itemShowButt">Weekly Price:</div>
+            <div class="col-sm-8" id="itemShowButt1"><%= @item.weekly_price %> QAR</div>
+          </div>
+          
+          <div class="row">
+            <div class="col-sm-4" id="itemShowButt">Monthly Price:</div>
+            <div class="col-sm-8" id="itemShowButt1"><%= @item.monthly_price %> QAR</div>
+          </div>
+          
+          <div class="row">  
+            <div class="col-sm-4" id="itemShowButt">Available Quantity:</div>
+            <div class="col-sm-8" id="itemShowButt1"><%= @item.quantity_left %></div>
+          </div>
+           
+          <div class="row"> 
+            <div class="col-sm-4" id="itemShowButt">Category:</div>
+            <div class="col-sm-8" id="itemShowButt1"><%= @item.category.name %></div>
+          </div>
+          
+          <div class="row">
+            <div class="col-sm-4" id="itemShowButt">Item Dimensions:</div>
+            <div class="col-sm-8" id="itemShowButt1"><%= @item.size %></div>
+          </div>
+          
+          <div class="row">
+            <div class="col-sm-4" id="itemShowButt">Item Weight:</div>
+            <div class="col-sm-8" id="itemShowButt1"><%= @item.weight %></div>
+          </div>
+          
+          </div>
+
+        </div>
+      </div>
      
-    
+      <br><br>
       
       <%= link_to 'Edit', edit_item_path(@item), class:'btn btn-default', id:'itemShowButt2' %> |
       <%= link_to 'Back', items_path, class:'btn btn-default', id:'itemShowButt2' %>
    
-    <br><br><br>
+    <br>
     
     </div>
-    
-    
-    
-    <div class="col-sm-2 sidenav">
-    </div>
-    
-    
-  
-    
-  </div>
+
+    <div class="col-sm-1 sidenav"></div>
+
 </div>
 
 

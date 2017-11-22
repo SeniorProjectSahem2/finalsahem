@@ -8,6 +8,7 @@ class Ability
       if user.user_type_id==1
         can :manage, :all
       elsif user.user_type_id==3 or user.user_type_id==4
+      
         can :read, Item 
         can :read, Category 
         can :read, Rental do |rental|
@@ -17,11 +18,7 @@ class Ability
           rental.recipient==user
         end
         #Items authorization
-        can :update, Item do |item|
-          item.user==user
-        end
-        
-        can :destroy, Item do |item|
+        can :manage, Item do |item|
           item.user==user
         end
         
@@ -37,6 +34,7 @@ class Ability
         end
         
         can :create, Rental
+        
       end
     #
     # The first argument to `can` is the action you are giving the user 

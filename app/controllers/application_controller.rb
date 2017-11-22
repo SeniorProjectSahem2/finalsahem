@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if:  :devise_controller?
   before_action :set_notifications, if: :user_signed_in?
   
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to unathorized_access_url
+  end
+  
   before_filter do
     resource = controller_name.singularize.to_sym
     method = "#{resource}_params"
@@ -14,7 +18,7 @@ class ApplicationController < ActionController::Base
   def set_notifications
     @notifications = Notification.where(recipient: current_user).recent
   end
-  
+
   def search
   @q = "%#{params[:query]}%"
   @items = Item.where("name LIKE ? or description LIKE ?", @q, @q)
@@ -25,7 +29,7 @@ end
 
   def configure_permitted_parameters
 
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone , :user_type_id])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone_number , :user_type_id])
 
   end
 end
