@@ -18,7 +18,7 @@
       <div class="text-left col-sm-6">
         
         <div class="row">
-          <div id="itemShowButt">Description</div>
+          <div id="itemShowButt">Description:</div>
         </div>
         
         <div class="row">
@@ -76,50 +76,61 @@
   
   <div class="row content">
     
-  <%= form_for(@rental) do |f| %>
-  <% if @rental.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@rental.errors.count, "error") %> prohibited this rental from being saved:</h2>
-
-      <ul>
-      <% @rental.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-
-  <%= f.hidden_field :user_id %>
-  <%= f.hidden_field :item_id %>
-  <%= f.hidden_field :status%>
-
-  <div id= "myform" class="container">  
-    <div id="myfield" class="field">
-      <%= f.label :start_date %> <br />
-      <%= f.date_select :start_date %>
+    <%= form_for(@rental) do |f| %>
+    <% if @rental.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@rental.errors.count, "error") %> prohibited this rental from being saved:</h2>
+  
+        <ul>
+        <% @rental.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+  
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :item_id %>
+    <%= f.hidden_field :status%>
+  
+    <div id= "myform" class="container">  
+    
+      <h2>Borrow Item</h2>
+      <hr id="homehr2">
+      
+      <div class="row">
+        <div class="col-sm-4"><%= f.label :start_date %></div>
+        <div class="col-sm-8"><%= f.date_select :start_date %></div>
+      </div>
+      
+      <div id="myfield" class="field">
+        <%= f.label :start_date %> 
+        <%= f.date_select :start_date %>
+      </div>
+      
+      <div id="myfield"class="field">
+        <%= f.label :end_date %> 
+        <%= f.date_select :end_date %>
+      </div>
+      
+      <div id="myfield"class="field">
+        <%= f.label :quantity %>
+        <%= f.select(:quantity, 1.upto(@rental.item.quantity_left).to_a) %>
+      </div>
+      
+      <div id= "mybutton" class="actions"> <br />
+        <%= f.submit "Submit Request",:id => "itemShowButt2"%>
+      </div>
+      
     </div>
     
-    <div id="myfield"class="field">
-      <%= f.label :end_date %> <br />
-      <%= f.date_select :end_date %>
-    </div>
-    
-   <div id="myfield"class="field">
-    <%= f.label :quantity %><br>
-    <%= f.select(:quantity, 1.upto(@rental.item.quantity_left).to_a) %>
-    </div>
-    
-    <div id= "mybutton" class="actions"> <br />
-      <%= f.submit "Create rental",:id => "usernewbutt"%>
-    </div>
-  </div>
-  <% end %>
+    <% end %>
   
   </div>
   
-</div>
-
 </div>
 
 <div class="col-sm-1 sidenav"></div>
+
+</div>

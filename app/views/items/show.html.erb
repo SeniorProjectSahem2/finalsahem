@@ -13,12 +13,12 @@
       
       <div class="container-fluid text-left">
         
-        <div class="itemShowAccount itemShowExample col-sm-6"></div>
+        <div class="col-sm-6 itemShowAccount itemShowExample"></div>
         
         <div class="text-left col-sm-6">
           
           <div class="row">
-            <div class="col-sm-4" id="itemShowButt">Description</div><br>
+            <div class="col-sm-4" id="itemShowButt">Description:</div><br>
             <div class="col-sm-8" id="itemShowButt3"><%= @item.description %></div>
           </div>
         
@@ -69,7 +69,7 @@
       <%= link_to 'Edit', edit_item_path(@item), class:'btn btn-default', id:'itemShowButt2' %> |
       <%= link_to 'Back', items_path, class:'btn btn-default', id:'itemShowButt2' %>
    
-    <br>
+    <br><br>
     
     </div>
 

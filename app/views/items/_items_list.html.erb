@@ -21,7 +21,7 @@
               <% if can? :destroy , item %>
               <div class="text-center"><%= link_to 'View Item', item, class:'btn btn-default' %> | <%= link_to 'Remove', item, method: :delete , class:'btn btn-danger' %></div>
               <% else %>
-              <div class="text-center"><%= link_to 'View Item',  new_rental_path(:item_id => item.id), class:'btn btn-default' %></div>
+              <div class="text-center"><%= link_to 'Borrow',  new_rental_path(:item_id => item.id), class:'btn btn-default' %></div>
               <% end %>
             </div>
           </div>

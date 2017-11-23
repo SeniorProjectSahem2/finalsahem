@@ -11,9 +11,7 @@ class Ability
       
         can :read, Item 
         can :read, Category 
-        can :read, Rental do |rental|
-          rental.user==user 
-        end
+        
         can :read, Notification do |item|
           rental.recipient==user
         end
@@ -25,8 +23,19 @@ class Ability
         can :create, Item
         
         #Rentals authorization
-        can :update, Rental do |rental|
+        can :read, Rental do |rental|
           rental.user==user 
+        end
+        can :change_to_accept, Rental do |rental|
+           rental.item.owner==user
+        end
+        
+        cannot :change_to_accept, Rental do |rental|
+           rental.user==user
+        end
+        
+        can :update, Rental do |rental|
+           rental.user==user
         end
         
         can :destroy, Rental do |rental|

@@ -11,6 +11,7 @@ def change_to_accept
     @rental = Rental.find params[:rental_id]
     @rental.update_column(:status, "accepted") 
     Notification.create(recipient: @rental.user, actor: current_user, action: "accepted", notifiable: @rental)
+    Transaction.create(borrower: @rental.user, lender: @rental.item.user, date_created: Date.today, item_name: @rental.item.name, item: @rental.item, rental: @rental)
     redirect_to rental_acceptance_msg_path
   end
   # GET /rentals/1
