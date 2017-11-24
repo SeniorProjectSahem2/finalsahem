@@ -77,12 +77,17 @@ def change_to_accept
   # DELETE /rentals/1.json
   def destroy
     authorize! :destroy , @rental
-    Notification.create(recipient: @rental.user, actor: current_user, action: "declined", notifiable: @rental.item)
+    if @rental.user != current_user
+      Notification.create(recipient: @rental.user, actor: current_user, action: "declined", notifiable: @rental.item)
+      @rental.destroy
+      respond_to do |format|
+        format.html { redirect_to rentals_url }
+        format.json { head :no_content }
+      end
+  else
     @rental.destroy
-    respond_to do |format|
-      format.html { redirect_to rentals_url, notice: 'Rental was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to @rental.item
+  end
   end
 
   private

@@ -6,45 +6,45 @@
       
       <div class="col-sm-6"> 
     
-        <h1>Sign Up</h1>
-
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= devise_error_messages! %>
         <div id= "myform" class="container">
   
+  <h1>Sign Up</h1><br><br>
+  
   <div id= "myfield" class="field">
     <%= f.label :first_name %>* <br>
     <%= f.text_field :first_name,:id => "fieldsize", autofocus: true %>
-  </div>
+  </div><br>
   
   <div id= "myfield" class="field">
     <%= f.label :last_name %>* <br>
     <%= f.text_field :last_name,:id => "fieldsize" %>
-  </div>
+  </div><br>
   
   <div id= "myfield" class="field">
     <%= f.label :email %>* <br>
     <%= f.email_field :email,:id => "fieldsize" %>
-  </div>
+  </div><br>
   
   
    
   <div id= "myfield" class="field">
     <%= f.label :phone_number %>* <br>
     <%= f.text_field :phone_number,:id => "fieldsize" %>
-  </div>
+  </div><br>
   
   
   
   <div id= "myfield" class="field">
     <%= f.label :location %>* <br>
     <%= f.select :location_id, ['Doha', 'Al Wakrah', 'Umm Salal', 'Al Shahaneya', 'Al Rayyan', 'Al Khor', 'Al Shamal'], {}, :id => "fieldsize" %>
-  </div>
+  </div><br>
   
   <div id= "myfield" class="field">
     <%= f.label :user_type_id %>* <br>
     <%= f.collection_select  :user_type_id, UserType.all,  :id , :name, :prompt => "Select user type" %>
-  </div>
+  </div><br>
   
   <div id= "myfield" class="field">
     <%= f.label :password %>*
@@ -52,7 +52,7 @@
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %>
     <%= f.password_field :password,:id => "fieldsize" %>
-  </div>
+  </div><br>
 
   <div id= "myfield" class="field">
     <%= f.label :password_confirmation %> <br>

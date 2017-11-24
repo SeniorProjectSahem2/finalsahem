@@ -6,16 +6,16 @@
       
       <div class="col-sm-6"> 
       
-      <h1>Log In</h1>
-
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   
       <div id= "myform" class="container">
-      
+        
+      <h1>Log In</h1><br><br>
+
       <div id= "myfield" class="field">
         <%= f.label :email %><br />
         <%= f.email_field :email, autofocus: true, :id => "fieldsize" %>
-      </div>
+      </div><br>
     
       <div id= "myfield" class="field">
         <%= f.label :password %><br />

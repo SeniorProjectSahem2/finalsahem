@@ -15,120 +15,141 @@
       
       <div class="itemShowAccount itemShowExample col-sm-6"></div>
       
-      <div class="text-left col-sm-6">
-        
-        <div class="row">
-          <div id="itemShowButt">Description:</div>
-        </div>
-        
-        <div class="row">
-          <div id="itemShowButt3"><%= @rental.item.description %></div>
-        </div>
+      <div class="row content col-sm-6">
+          
+        <%= form_for(@rental) do |f| %>
+        <% if @rental.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@rental.errors.count, "error") %> prohibited this rental from being saved:</h2>
       
-        <br>
+            <ul>
+            <% @rental.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+      
+      
+        <%= f.hidden_field :user_id %>
+        <%= f.hidden_field :item_id %>
+        <%= f.hidden_field :status%>
+      
+        <div id= "rentalform" class="container">  
         
-        <div class="row">
-          <div class="col-sm-4" id="itemShowButt">Daily Price:</div> 
-          <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.daily_price %> QAR</div>
+          <h2 class="text-center">Borrow Item</h2>
+          
+          <hr id="homehr2">
+          
+          <div id="myfield" class="field">
+            <%= f.label :start_date %> 
+            <%= f.date_select :start_date %>
+          </div>
+          
+          <div id="myfield"class="field">
+            <%= f.label :end_date %> 
+            <%= f.date_select :end_date %>
+          </div>
+          
+          <div id="myfield"class="field">
+            <%= f.label :quantity %>
+            <%= f.select(:quantity, 1.upto(@rental.item.quantity_left).to_a) %>
+          </div>
+          
+          <div id= "mybutton" class="actions"> <br />
+            <%= f.submit "Submit Request",:id => "itemShowButt2"%><br><br>
+          </div>
+          
         </div>
         
-        <div class="row">  
-          <div class="col-sm-4" id="itemShowButt">Weekly Price:</div>
-          <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.weekly_price %> QAR</div>
-        </div>
-        
-        <div class="row">  
-          <div class="col-sm-4" id="itemShowButt">Monthly Price:</div>
-          <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.monthly_price %> QAR</div>
-        </div>
-        
-        <div class="row">  
-          <div class="col-sm-4" id="itemShowButt">Available Quantity:</div>
-          <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.quantity_left %></div>
-        </div>
-         
-        <div class="row"> 
-          <div class="col-sm-4" id="itemShowButt">Category:</div>
-          <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.category.name %></div>
-        </div>
-        
-        <div class="row">
-          <div class="col-sm-4" id="itemShowButt">Item Dimensions:</div>
-          <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.size %></div>
-        </div>
-        
-        <div class="row">
-          <div class="col-sm-4" id="itemShowButt">Item Weight:</div>
-          <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.weight %></div>
-        </div>
-        
-        </div>
-
+        <% end %>
+              
       </div>
-                        
-      
-      <br><br>
-      
-      <%= link_to 'Back', items_path, class:'btn btn-default', id:'itemShowButt2' %>
-      
-      <br>
       
     </div>
-  
-  <div class="row content">
-    
-    <%= form_for(@rental) do |f| %>
-    <% if @rental.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@rental.errors.count, "error") %> prohibited this rental from being saved:</h2>
-  
-        <ul>
-        <% @rental.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-  
-  
-    <%= f.hidden_field :user_id %>
-    <%= f.hidden_field :item_id %>
-    <%= f.hidden_field :status%>
-  
-    <div id= "myform" class="container">  
-    
-      <h2>Borrow Item</h2>
-      <hr id="homehr2">
+      
+    <br><br>
+      
+    <div class="text-left col-sm-6">
       
       <div class="row">
-        <div class="col-sm-4"><%= f.label :start_date %></div>
-        <div class="col-sm-8"><%= f.date_select :start_date %></div>
+        <div id="itemShowButt">Description:</div>
       </div>
       
-      <div id="myfield" class="field">
-        <%= f.label :start_date %> 
-        <%= f.date_select :start_date %>
+      <div class="row">
+        <div id="itemShowButt3"><%= @rental.item.description %></div>
+      </div>
+    
+      <br>
+      
+      <div class="row">
+        <div class="col-sm-4" id="itemShowButt">Daily Price:</div> 
+        <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.daily_price %> QAR</div>
       </div>
       
-      <div id="myfield"class="field">
-        <%= f.label :end_date %> 
-        <%= f.date_select :end_date %>
+      <div class="row">  
+        <div class="col-sm-4" id="itemShowButt">Weekly Price:</div>
+        <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.weekly_price %> QAR</div>
       </div>
       
-      <div id="myfield"class="field">
-        <%= f.label :quantity %>
-        <%= f.select(:quantity, 1.upto(@rental.item.quantity_left).to_a) %>
+      <div class="row">  
+        <div class="col-sm-4" id="itemShowButt">Monthly Price:</div>
+        <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.monthly_price %> QAR</div>
       </div>
       
-      <div id= "mybutton" class="actions"> <br />
-        <%= f.submit "Submit Request",:id => "itemShowButt2"%>
+      <div class="row">  
+        <div class="col-sm-4" id="itemShowButt">Available Quantity:</div>
+        <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.quantity_left %></div>
+      </div>
+       
+      <div class="row"> 
+        <div class="col-sm-4" id="itemShowButt">Category:</div>
+        <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.category.name %></div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-4" id="itemShowButt">Item Dimensions:</div>
+        <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.size %></div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-4" id="itemShowButt">Item Weight:</div>
+        <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.weight %></div>
       </div>
       
     </div>
-    
-    <% end %>
-  
+
   </div>
+      
+  <br><br>
+  
+  
+    <!--Code for showing stars and rating-->
+  
+
+           <% if @ratings.blank? %>
+              <h3>No reviews just yet, would you like to add the first?</h3>
+              <%= link_to "Write Review", new_item_rating_path(:item_id), class: "btn btn-danger" %>
+           <% else %>
+           <% current_user.name %>
+              <% @ratings.each do |rating| %>
+
+ 
+                  <% (1..rating.stars).each do |i| %>   
+                  <%= image_tag "golden_star.png", :class => "style_image" %>  
+                  <%end%>
+                  
+                  <p><%= rating.comment %></p>
+            </div>
+            
+            <% end %>
+         <% end %>
+  
+    <!--Code for showing stars and rating--> 
+  
+  <%= link_to 'Back', items_path, class:'btn btn-default', id:'itemShowButt2' %>
+  
+  <br><br>
   
 </div>
 

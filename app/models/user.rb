@@ -59,7 +59,9 @@ def past_transaction
     end
     temp
 end
- 
+ def pending_request(item)
+   rental_request = Rental.where(item_id: item).where(user_id: self.id).where("status = ?","pending") 
+  end
  
   
   def name

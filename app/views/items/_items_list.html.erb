@@ -6,11 +6,16 @@
 
       <div id="items_div">
         
+        <% if items.count == 0%>
+          <h3 id="itemsheader">Sorry, there are no items to view!</h3><br>
+          
+          <%= link_to 'Add Items', new_item_path, class:'btn btn-default', id:'itemShowButt2==' %>
+        <% end %>
+        
         <% if user_signed_in? %>
         
           <% items.each do |item| %>
           
-
           
           <div class="panel-group">
             <div class="panel panel-default" id="itemspanel">
@@ -20,37 +25,46 @@
               <div id="paneldiv"><b>Posted by:</b> <%= item.user.name %></div><br>
               <div id="paneldiv"><b>Current quantity:</b> <%= item.quantity_left %></div><br>
               
-        
-
-              
-             
-
-               
-              
               <% if can? :destroy , item %>
               <div class="text-center"><%= link_to 'View Item', item, class:'btn btn-default' %> | <%= link_to 'Remove', item, method: :delete , class:'btn btn-danger' %></div>
+             
+             
+             
               <% else %>
               
-              <div class="text-center"><%= link_to 'Borrow',  new_rental_path(:item_id => item.id), class:'btn btn-default' %></div>
-              <%= link_to "Rate the item", new_item_rating_path(item.id) %> <br><br>
-              Average Rating: <%= item.avg_rating  %> <br>
+                <% if current_user.pending_request(item.id).count == 0 %>
+                
+                  <div class="text-center"><%= link_to 'Borrow',  new_rental_path(:item_id => item.id), class:'btn btn-default' %>
+                <% else %>
+                  <div class="text-center"><%= link_to 'Requested',  current_user.pending_request(item.id)[0], class:'btn btn-default' %>
+                <% end %>
+                
+                
+                
               
-               <% x= item.avg_rating  %> 
+              <% x= item.avg_rating  %>
+        
+              <% if x > 0 %>
+              <%= link_to "Rate Item", new_item_rating_path(item.id), class:'btn btn-default' %> </div><br>
+              Average Rating: <%= item.avg_rating  %>
+
               <% (1..x).each do |i| %>
               <%= image_tag "golden_star.png", :class => "style_image" %>  
 
               <% end %>
               
-             <%end %>
-               
+              <% else %>
+              <%= link_to "No Ratings yet, Rate Item", new_item_rating_path(item.id), class:'btn btn-default' %> </div><br>
+
               
-           
+             <% end %>
+                          <% end %>
+
+
             </div>
           </div>
             
-            <% if items.count == 0%>
-              <h3 id="itemsheader">Sorry there is no items to view!</h3>
-            <% end %>
+            
           
           <% end %>
           

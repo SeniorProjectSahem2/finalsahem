@@ -8,154 +8,90 @@
 
 	<div class="col-sm-8 sidenav">
 		
-    <div id="content">
+       
+		<div id="content">
       <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-		<li><a></a></li>
-		<li><a></a></li>
-		<li><a></a></li>
-		
-        <li class="active"><a href="#red" data-toggle="tab">My Profile</a>
-        </li>
-        <li><a href="#orange" data-toggle="tab">Rentals Request</a>
-        </li>
-        <li><a href="#yellow" data-toggle="tab">My Transactions</a>
-        </li>
-        <li><a href="#green" data-toggle="tab">My Items</a>
-        
-		<li><a></a></li>
+        <li><a></a></li>
         <li><a></a></li>  
-		<li><a></a></li>  
+	    	<li><a></a></li> 
+  			<li class="active">
+          <a  href="#1" data-toggle="tab">My Profile</a>
+  			</li>
+  			<li><a href="#2" data-toggle="tab">Rentals Request</a></li>
+  			<li><a href="#3" data-toggle="tab">My Transactions</a></li>
+  			<li><a href="#4" data-toggle="tab">My Items</a></li>
+  			<li><a></a></li>
+        <li><a></a></li>  
+	    	<li><a></a></li> 
+	    </ul>
+		</div>
+	</div>
 	
-		    
-      </ul>
-      
-    </div>
-    <div id="my-tab-content" class="tab-content">
-      <div class="tab-pane active" id="red">
-        
-        <div class="container-fluid text-center row" >    
-        <div class="row content">
-        
-        <div class="col-sm-7 sidenav">
-          <br><br>
-		    <div class="account example">
-		    </div>
-		    <br> <br><br>
-	   
-	     <%= render "profileForm" %>
-	      
-	    	<br><br> <br><br><br><br> 
+	<div class="tab-content ">
+	  
+			  <div class="tab-pane active" id="1">
+            <div class="container-fluid text-center row" >    
+              <div class="row content">
+                <div class="col-sm-12 sidenav">
+                  <br><br>
+  		            <div class="account example"></div>
+  		            <br><br><br>
+  	              <%= render "profileForm" %>
+  	            	<br><br><br><br><br><br> 
+                </div>
+              </div>
+            </div>
+			  </div>
+				
+				<div class="tab-pane" id="2">
+				  <div class="container-fluid text-center row" >    
+            <div class="row content">
+              <div class="col-sm-12 sidenav">
+                <% if current_user.Rental_request.count ==0 %>
+                  <h3 id="usershowpadd">You don't have any request notifications.</h3>
+                	<br>
+                	<div class="btn-group" role="group" aria-label="userShowButtons">
+                    <button type="button" class="btn btn-default btn-lg"><%= link_to new_item_path do %>  Lend an Item  <% end %></button>
+                  </div>
+                <% else %>
+                  <%= render :partial =>'rentals/all_requests' %>
+                <% end %>
+				      </div>
+				     </div>
+				  </div>
+			</div>
+				
+        <div class="tab-pane" id="3">
+          <div class="container-fluid text-center row" >    
+            <div class="row content">
+              <div class="col-sm-12 sidenav">
+                <% if current_user.ongoing_transaction.count ==0 %>
+                  <h3 id="usershowpadd">You don't have any transactions.</h3>
+            		  <br>
+            		  <div class="btn-group" role="group" aria-label="userShowButtons">
+                    <button type="button" class="btn btn-default btn-lg">Lend an Item</button>
+                  </div>
+                <% else %>
+                  <%= render :partial =>'transactions/history' %>
+                <% end %>
+				      </div>
+			    	</div>
+				  </div>
+				</div>
+				
+			  <div class="tab-pane" id="4">
+          <div class="container-fluid text-center row" >    
+            <div class="row content">
+              <div class="col-sm-12 sidenav">
+                  <%= render partial: 'items/items_list', locals: { items: Item.where(user_id: current_user.id)} %>
+              </div>
+            </div>
+          </div>
         </div>
-        
-	      <div class="col-sm-1 sidenav">
-	        <p> My Loyality Points </p>
-        </div>
+				
+			</div>
+  </div>
 	
-      </div>
-      </div>
-      </div>
-     
-	  <div class="tab-pane" id="orange">
-	    
-		<% if current_user.Rental_request.count ==0 %>
-    <h3 id="usershowpadd">You don't have any request notifications.</h3>
-		<br>
-		<div class="btn-group" role="group" aria-label="userShowButtons">
-          
-      <button type="button" class="btn btn-default btn-lg">Lend an Item</button>
-    </div>
-    <% else %>
-    <%= render :partial =>'rentals/all_requests' %>
-    <% end %>
-        
-	  </div>
-     
-	  <div class="tab-pane" id="yellow">
-	 
-	   <% if current_user.ongoing_transaction.count ==0 %>
-      <h3 id="usershowpadd">You don't have any rentals.</h3>
-		  <br>
-		  <div class="btn-group" role="group" aria-label="userShowButtons">
-          
-      <button type="button" class="btn btn-default btn-lg">Lend an Item</button>
-      </div>
-      <% else %>
-      <%= render :partial =>'transactions/history' %>
-      <% end %>
-      </div>
-	 <!--Items I borrowed tab-->
-	 <!--   <div id="content">-->
-  <!--    <ul id="tabs" class="nav nav-tabs1" data-tabs="tabs">-->
-        
-  <!--      <br>-->
-        
-  <!--      <div class="btn-group" id="usershowpadd" role="group" aria-label="userShowButtons">-->
-          
-  <!--        <!%= render :partial =>'rentals/history' %>-->
-          
-          <!--<button type="button" class="btn btn-default btn-lg"><a href="#current" data-toggle="tab">Current Items</a>-->
-          <!--<span class="glyphicon glyphicon-chevron-down"></span>-->
-          <!--</button>-->
-          <!--<button type="button" class="btn btn-default btn-lg"><a href="#past" data-toggle="tab">Past Items</a>-->
-          <!--<span class="glyphicon glyphicon-chevron-down"></span>-->
-          <!--</button>-->
-          
-      <!-- </div> -->
-        
-        
-      <!--</ul>-->
-      <!--</div>-->
-      
-      <div id="my-tab-content" class="tab-content">
-      <div class="tab-pane" id="current">
-		  <p>WORKED</p>
-		  </div>
-		
-			  <div class="tab-pane" id="past">
-			    <p>WORKED 2</p>
-        </div>
-        </div>
-      
-	 </div>
-	    <!--My Items tab-->
-      <div class="tab-pane" id="green">
-    	
-	    <div id="content">
-      <ul id="tabs" class="nav nav-tabs1" data-tabs="tabs">
-        
-        <br>
-        <%= render partial: 'items/items_list', locals: { items: Item.where(user_id: current_user.id)} %>
-        <!--<div class="btn-group" role="group" aria-label="userShowButtons">-->
-          
-        <!--  <button type="button" class="btn btn-default btn-lg"><a href="#available" data-toggle="tab">Available Items</a>-->
-        <!--  <span class="glyphicon glyphicon-chevron-down"></span>-->
-        <!--  </button>-->
-        <!--  <button type="button" class="btn btn-default btn-lg"><a href="#nonavailable" data-toggle="tab">Non-Available Items</a>-->
-        <!--  <span class="glyphicon glyphicon-chevron-down"></span>-->
-        <!--  </button>-->
-          
-        <!--</div>-->
-        
-        
-      </ul>
-      </div>
-      
-      <div id="my-tab-content" class="tab-content">
-      <div class="tab-pane" id="available">
-		  <p>WORKED</p>
-		  </div>
-		
-			  <div class="tab-pane" id="nonavailable">
-			    <p>WORKED 2</p>
-        </div>
-        </div>
-    	
-      </div>
-     
-     
-    </div>
-  </div>
-  </div>
     
    
 
@@ -167,10 +103,8 @@
 
 <br>
 			
-	<!--<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>-->
- <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
-
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 
 
