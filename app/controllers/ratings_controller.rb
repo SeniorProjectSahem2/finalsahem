@@ -1,5 +1,7 @@
 class RatingsController < ApplicationController
   before_action :set_rating, only: [:show, :edit, :update, :destroy]
+  before_action :set_item
+ # before_action :authenticate_user!
 
   # GET /ratings
   # GET /ratings.json
@@ -10,11 +12,15 @@ class RatingsController < ApplicationController
   # GET /ratings/1
   # GET /ratings/1.json
   def show
+ 
   end
+
 
   # GET /ratings/new
   def new
     @rating = Rating.new
+    @item = Item.find(params[:item_id])
+    @rating.item = Item.find(params[:item_id])
   end
 
   # GET /ratings/1/edit
@@ -25,17 +31,26 @@ class RatingsController < ApplicationController
   # POST /ratings.json
   def create
     @rating = Rating.new(rating_params)
+    @rating.user_id = current_user.id
+    @item = Item.find(params[:item_id])
+    @rating.item = Item.find(params[:item_id])
+    if @rating.save
+      redirect_to @rating.item
+    else 
+      render 'new'
 
-    respond_to do |format|
-      if @rating.save
-        format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
-        format.json { render :show, status: :created, location: @rating }
-      else
-        format.html { render :new }
-        format.json { render json: @rating.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+    end 
+end 
+  #   respond_to do |format|
+  #     if @rating.save
+  #       format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
+  #       format.json { render :show, status: :created, location: @rating }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @rating.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /ratings/1
   # PATCH/PUT /ratings/1.json
@@ -51,6 +66,9 @@ class RatingsController < ApplicationController
     end
   end
 
+
+
+
   # DELETE /ratings/1
   # DELETE /ratings/1.json
   def destroy
@@ -63,6 +81,12 @@ class RatingsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+    def set_item
+            @item = Item.find(params[:item_id])
+    end 
+
+
     def set_rating
       @rating = Rating.find(params[:id])
     end
@@ -71,4 +95,5 @@ class RatingsController < ApplicationController
     def rating_params
       params.require(:rating).permit(:stars, :comment, :user_id, :item_id)
     end
-end
+
+end 

@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+
 <p>
   <strong>Stars:</strong>
   <%= @rating.stars %>
@@ -12,13 +13,17 @@
 
 <p>
   <strong>User:</strong>
-  <%= @rating.user %>
+  <%= @rating.user.name %>
 </p>
 
 <p>
   <strong>Item:</strong>
   <%= @rating.item %>
 </p>
+
+
+
+<%= link_to "Rate itttt" , new_item_rating_path(@item) %>
 
 <%= link_to 'Edit', edit_rating_path(@rating) %> |
 <%= link_to 'Back', ratings_path %>

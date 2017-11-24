@@ -10,14 +10,13 @@ class ItemsController < ApplicationController
     @items = Item.all
     @categories = Category.all
   end
-  
 
-  def from_category
-      @selected = Item.where(:category_id => params[:category_id])
-      respond_to do |format|
-          format.js
-      end
-  end
+def from_category
+    @selected = Item.where(:category_id => params[:category_id])
+    respond_to do |format|
+        format.js
+    end
+end
 
 
   #def authorize
@@ -36,25 +35,26 @@ class ItemsController < ApplicationController
   # GET /items/1.json
   def show
     @rentals= Rental.where(:category_id => params[:category_id])
+    @ratings = Rating.where(:item_id => params[:id])
+    
+   
   end
 
   # GET /items/new
   # GET /items/new
   def new
-    
     @item = current_user.items.build
-  
   end
 
   # GET /items/1/edit
   def edit
-    authorize! :update , @item 
   end
 
   # POST /items
   # POST /items.json
   def create
      @item = current_user.items.build(item_params)
+
 
     respond_to do |format|
       if @item.save
@@ -70,7 +70,6 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
-    authorize! :update , @item 
     respond_to do |format|
       if @item.update(item_params)
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
@@ -85,7 +84,6 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
-    authorize! :destroy , @item 
     @item.destroy
     respond_to do |format|
       format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
@@ -104,3 +102,8 @@ class ItemsController < ApplicationController
       params.require(:item).permit(:name, :description, :size, :weight, :quantity, :daily_price, :weekly_price, :monthly_price, :user_id, :category_id)
     end
 end
+
+
+
+
+

@@ -11,7 +11,7 @@ def change_to_accept
     @rental = Rental.find params[:rental_id]
     @rental.update_column(:status, "accepted") 
     Notification.create(recipient: @rental.user, actor: current_user, action: "accepted", notifiable: @rental)
-    Transaction.create(borrower: @rental.user, lender: @rental.item.user, date_created: Date.today, item_name: @rental.item.name, item: @rental.item, rental: @rental)
+    Transaction.create(item_name: @rental.item.name, borrower: @rental.user, lender: @rental.item.user,  item: @rental.item, rental: @rental, start_date: @rental.start_date, end_date: @rental.end_date)
     redirect_to rental_acceptance_msg_path
   end
   # GET /rentals/1
@@ -77,7 +77,7 @@ def change_to_accept
   # DELETE /rentals/1.json
   def destroy
     authorize! :destroy , @rental
-    Notification.create(recipient: @rental.user, actor: current_user, action: "declined", notifiable: @rental)
+    Notification.create(recipient: @rental.user, actor: current_user, action: "declined", notifiable: @rental.item)
     @rental.destroy
     respond_to do |format|
       format.html { redirect_to rentals_url, notice: 'Rental was successfully destroyed.' }

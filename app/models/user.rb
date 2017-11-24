@@ -4,10 +4,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :user_type
-  has_many :rental_requests
-  has_many :rentals 
-  has_many :items 
-  has_many :notifications, foreign_key: :recipient_id 
+  has_many :rentals ,  dependent: :destroy
+  has_many :items , dependent: :destroy
+  has_many :notifications, foreign_key: :recipient_id ,  dependent: :destroy
+  has_many :ratings, dependent: :destroy
+  has_many :transactions , dependent: :destroy
+  
   
   ##validations dont make sense here right?
   
@@ -33,7 +35,30 @@ class User < ActiveRecord::Base
   end 
   temp
  end
- 
+  def ongoing_transaction
+    temp = []
+    Transaction.all.each do |t|
+      if t.current? and t.borrower_id == self.id
+        temp = temp +[t]
+      end
+      if t.current? and t.lender_id == self.id
+        temp = temp +[t]
+      end
+    end
+    temp
+end
+def past_transaction
+    temp = []
+    Transaction.all.each do |t|
+      if t.past? and t.borrower_id == self.id
+        temp = temp +[t]
+      end
+      if t.past? and t.lender_id == self.id
+        temp = temp +[t]
+      end
+    end
+    temp
+end
  
  
   

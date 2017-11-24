@@ -30,9 +30,7 @@ class Ability
            rental.item.owner==user
         end
         
-        cannot :change_to_accept, Rental do |rental|
-           rental.user==user
-        end
+        
         
         can :update, Rental do |rental|
            rental.user==user

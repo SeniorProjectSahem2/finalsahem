@@ -1,9 +1,29 @@
 class Item < ActiveRecord::Base
-  belongs_to :user , dependent: :destroy
+  belongs_to :user 
   belongs_to :category
-  has_many :rentals , dependent: :destroy
+  has_many :rentals ,  dependent: :destroy
   
-   
+  
+  def avg_rating
+        rating = Rating.where(item_id: self.id)
+        sum = 0
+         rating.each  do |r| 
+           sum = sum + r.stars
+
+        #   if r.blank?
+        #     @avg_rating= 0
+        #   else
+        #     @avg_rating = r.average(:stars).round(2)
+          end 
+           
+           if rating.count==0
+             avg=0
+          else
+            avg = sum/rating.count
+          end
+           
+   end
+  
   
   ##validations 
   
@@ -35,4 +55,7 @@ class Item < ActiveRecord::Base
     "#{price.daily}/per day, #{price.monthly}/per month, #{price.yearly}/per year"
   end
   
-end
+  
+  
+  
+end 

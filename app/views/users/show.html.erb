@@ -18,7 +18,7 @@
         </li>
         <li><a href="#orange" data-toggle="tab">Rentals Request</a>
         </li>
-        <li><a href="#yellow" data-toggle="tab">Items I Borrowed</a>
+        <li><a href="#yellow" data-toggle="tab">My Transactions</a>
         </li>
         <li><a href="#green" data-toggle="tab">My Items</a>
         
@@ -72,7 +72,7 @@
      
 	  <div class="tab-pane" id="yellow">
 	 
-	   <% if current_user.Rental_request.count ==0 %>
+	   <% if current_user.ongoing_transaction.count ==0 %>
       <h3 id="usershowpadd">You don't have any rentals.</h3>
 		  <br>
 		  <div class="btn-group" role="group" aria-label="userShowButtons">
@@ -80,7 +80,7 @@
       <button type="button" class="btn btn-default btn-lg">Lend an Item</button>
       </div>
       <% else %>
-      <%= render :partial =>'rentals/history' %>
+      <%= render :partial =>'transactions/history' %>
       <% end %>
       </div>
 	 <!--Items I borrowed tab-->

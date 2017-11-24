@@ -9,7 +9,11 @@ Rails.application.routes.draw do
 
   devise_for :users 
   resources :contracts
-  resources :ratings
+  
+ resources :items do
+      resources :ratings, except: [:show, :index]
+  end 
+  
   resources :rentals do
     put :change_to_accept
     get :acceptance_msg

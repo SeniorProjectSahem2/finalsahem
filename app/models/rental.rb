@@ -1,7 +1,7 @@
 class Rental < ActiveRecord::Base
   after_create :set_to_pending
   belongs_to :user 
-  belongs_to :item
+  belongs_to :item 
   has_one :contract
   has_many :notifications , through: :user
   
@@ -12,8 +12,12 @@ class Rental < ActiveRecord::Base
   def days
     (end_date - start_date).to_i
   end
+  
+  
   private
   def set_to_pending
     self.update_attribute(:status, "pending")
   end
+  
+  
   end
