@@ -29,10 +29,10 @@
               <h3>No reviews just yet, would you like to add the first!</h3>
               <%= link_to "Write Review", new_item_rating_path(@item), class: "btn btn-danger" %>
            <% else %>
-           <% current_user.name %>
               <% @ratings.each do |rating| %>
 
- 
+                   <%= rating.user.name %>
+
                   <% (1..rating.stars).each do |i| %>   
                   <%= image_tag "golden_star.png", :class => "style_image" %>  
                   <%end%>

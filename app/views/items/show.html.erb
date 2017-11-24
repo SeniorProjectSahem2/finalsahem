@@ -15,16 +15,43 @@
         
    
         
-        <div class="col-sm-6 itemShowAccount itemShowExample"></div>
+        <div class="col-sm-6">
+          
+          <div class="itemShowAccount itemShowExample"></div>
+          
+          <br><br>
+          
+          <div id="itemShowButt3">  
+          <% if @ratings.blank? %>
+            <h3>No reviews just yet, would you like to add the first?</h3>
+            <%= link_to "Write Review", new_item_rating_path(@item), class: "btn btn-danger" %><br><br>
+          <% else %>
+          
+            <h3>Ratings:</h3><br>
+            
+              <% @ratings.each do |rating| %>
+            
+                  <%= rating.user.name %>
+                  
+                  (<% (1..rating.stars).each do |i| %>   
+                  <%= image_tag "golden_star.png", :class => "style_image" %> 
+                  <%end%>)
+                  
+                  <p><%= rating.comment %></p><hr>
+            <% end %>
+            <% end %>
+          </div>
+          
+          <br><br>
+          
+        </div>
+        
         
         <div class="text-left col-sm-6">
           
           <div class="row">
-            
-            
-
             <div class="col-sm-4" id="itemShowButt">Description:</div><br>
-            <div class="col-sm-8" id="itemShowButt3"><%= @item.description %></div>
+            <div class="col-sm-8" id="itemShowButt1"><%= @item.description %></div>
           </div>
         
           <br>
@@ -64,41 +91,12 @@
             <div class="col-sm-8" id="itemShowButt1"><%= @item.weight %></div>
           </div>
           
-          
-  <!--Code for showing stars and rating-->
-  
-
-           <% if @ratings.blank? %>
-              <h3>No reviews just yet, would you like to add the first!</h3>
-              <%= link_to "Write Review", new_item_rating_path(@item), class: "btn btn-danger" %>
-           <% else %>
-           <% current_user.name %>
-              <% @ratings.each do |rating| %>
-
- 
-                  <% (1..rating.stars).each do |i| %>   
-                  <%= image_tag "golden_star.png", :class => "style_image" %>  
-                  <%end%>
-                  
-                  <p><%= rating.comment %></p>
-            </div>
-            
-            <% end %>
-         <% end %>
-  
-    <!--Code for showing stars and rating-->
-
-          
-          </div>
-
         </div>
+
+      </div>
       </div>
      
       <br><br>
-
-  
-
-
       
       <%= link_to 'Edit', edit_item_path(@item), class:'btn btn-default', id:'itemShowButt2' %> |
       <%= link_to 'Back', items_path, class:'btn btn-default', id:'itemShowButt2' %>

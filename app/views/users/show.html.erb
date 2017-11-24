@@ -37,7 +37,7 @@
   		            <div class="account example"></div>
   		            <br><br><br>
   	              <%= render "profileForm" %>
-  	            	<br><br><br><br><br><br> 
+  	            	<br><br><br>
                 </div>
               </div>
             </div>
@@ -51,8 +51,9 @@
                   <h3 id="usershowpadd">You don't have any request notifications.</h3>
                 	<br>
                 	<div class="btn-group" role="group" aria-label="userShowButtons">
-                    <button type="button" class="btn btn-default btn-lg"><%= link_to new_item_path do %>  Lend an Item  <% end %></button>
+                    <button type="button" class="btn btn-default btn-lg" id="profileAddItem"><%= link_to new_item_path do %>  Add Item  <% end %></button>
                   </div>
+                  <br><br>
                 <% else %>
                   <%= render :partial =>'rentals/all_requests' %>
                 <% end %>

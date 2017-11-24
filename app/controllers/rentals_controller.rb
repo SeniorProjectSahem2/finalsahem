@@ -30,6 +30,7 @@ def change_to_accept
     if user_signed_in?
     @rental = current_user.rentals.build
      @rental.item = Item.find(params[:item_id])
+     @ratings = Rating.where(item_id: params[:item_id])
    else
      redirect_to user_session_url
    end
@@ -38,6 +39,7 @@ def change_to_accept
   # GET /rentals/1/edit
   def edit
     authorize! :update , @rental
+
   end
 
   # POST /rentals
@@ -85,6 +87,8 @@ def change_to_accept
         format.json { head :no_content }
       end
   else
+    notification = Notification.where(notifiable: @rental)
+    notification[0].destroy
     @rental.destroy
     redirect_to @rental.item
   end

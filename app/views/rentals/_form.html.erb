@@ -13,9 +13,63 @@
     
     <div class="container-fluid text-left">
       
-      <div class="itemShowAccount itemShowExample col-sm-6"></div>
+      <div class="col-sm-6">
+          
+        <div class="itemShowAccount itemShowExample"></div>
+        
+        <br><br>
       
-      <div class="row content col-sm-6">
+        <div class="row">
+          <div id="itemShowButt">Description:</div>
+        </div>
+        
+        <div class="row">
+          <div id="itemShowButt1"><%= @rental.item.description %></div>
+        </div>
+      
+        <br>
+        
+        <div class="row">
+          <div class="col-sm-4" id="itemShowButt">Daily Price:</div> 
+          <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.daily_price %> QAR</div>
+        </div>
+        
+        <div class="row">  
+          <div class="col-sm-4" id="itemShowButt">Weekly Price:</div>
+          <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.weekly_price %> QAR</div>
+        </div>
+        
+        <div class="row">  
+          <div class="col-sm-4" id="itemShowButt">Monthly Price:</div>
+          <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.monthly_price %> QAR</div>
+        </div>
+        
+        <div class="row">  
+          <div class="col-sm-4" id="itemShowButt">Available Quantity:</div>
+          <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.quantity_left %></div>
+        </div>
+         
+        <div class="row"> 
+          <div class="col-sm-4" id="itemShowButt">Category:</div>
+          <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.category.name %></div>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-4" id="itemShowButt">Item Dimensions:</div>
+          <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.size %></div>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-4" id="itemShowButt">Item Weight:</div>
+          <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.weight %></div>
+        </div>
+        
+      </div>
+ 
+      
+    <div class="text-left col-sm-6">
+      
+      <div class="row content">
           
         <%= form_for(@rental) do |f| %>
         <% if @rental.errors.any? %>
@@ -66,56 +120,36 @@
               
       </div>
       
-    </div>
+      <br><br>
       
-    <br><br>
-      
-    <div class="text-left col-sm-6">
-      
-      <div class="row">
-        <div id="itemShowButt">Description:</div>
-      </div>
-      
-      <div class="row">
-        <div id="itemShowButt3"><%= @rental.item.description %></div>
-      </div>
-    
-      <br>
-      
-      <div class="row">
-        <div class="col-sm-4" id="itemShowButt">Daily Price:</div> 
-        <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.daily_price %> QAR</div>
-      </div>
-      
-      <div class="row">  
-        <div class="col-sm-4" id="itemShowButt">Weekly Price:</div>
-        <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.weekly_price %> QAR</div>
-      </div>
-      
-      <div class="row">  
-        <div class="col-sm-4" id="itemShowButt">Monthly Price:</div>
-        <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.monthly_price %> QAR</div>
-      </div>
-      
-      <div class="row">  
-        <div class="col-sm-4" id="itemShowButt">Available Quantity:</div>
-        <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.quantity_left %></div>
-      </div>
-       
-      <div class="row"> 
-        <div class="col-sm-4" id="itemShowButt">Category:</div>
-        <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.category.name %></div>
-      </div>
-      
-      <div class="row">
-        <div class="col-sm-4" id="itemShowButt">Item Dimensions:</div>
-        <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.size %></div>
-      </div>
-      
-      <div class="row">
-        <div class="col-sm-4" id="itemShowButt">Item Weight:</div>
-        <div class="col-sm-8" id="itemShowButt1"><%= @rental.item.weight %></div>
-      </div>
+      <div id="itemShowButt4">
+           
+           
+           <% if @ratings.blank? %>
+              <h3>Would you like to Rate Item?
+              <%= link_to "Write Review", new_item_rating_path(@rental.item_id), class: "btn btn-danger" %></h3><br>
+              
+           <% else %>
+            
+            <h3>Ratings:</h3><br>
+              <% @ratings.each do |rating| %>
+              
+                  <%= rating.user.name %>
+                  (<% (1..rating.stars).each do |i| %>   
+                  <%= image_tag "golden_star.png", :class => "style_image" %>  
+                  <%end%>)
+                  
+                  <p><%= rating.comment %></p>
+                  <hr>
+            <% end %>
+            
+            
+            <% end %>
+            
+            
+            
+            
+          </div> 
       
     </div>
 
@@ -123,29 +157,6 @@
       
   <br><br>
   
-  
-    <!--Code for showing stars and rating-->
-  
-
-           <% if @ratings.blank? %>
-              <h3>No reviews just yet, would you like to add the first?</h3>
-              <%= link_to "Write Review", new_item_rating_path(:item_id), class: "btn btn-danger" %>
-           <% else %>
-           <% current_user.name %>
-              <% @ratings.each do |rating| %>
-
- 
-                  <% (1..rating.stars).each do |i| %>   
-                  <%= image_tag "golden_star.png", :class => "style_image" %>  
-                  <%end%>
-                  
-                  <p><%= rating.comment %></p>
-            </div>
-            
-            <% end %>
-         <% end %>
-  
-    <!--Code for showing stars and rating--> 
   
   <%= link_to 'Back', items_path, class:'btn btn-default', id:'itemShowButt2' %>
   
