@@ -10,7 +10,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    if user_signed_in?
     @rentals = current_user.Rental_request
+  else 
+     redirect_to user_session_url
+   end
   end
 
   # GET /users/new

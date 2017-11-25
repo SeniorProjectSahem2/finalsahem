@@ -24,8 +24,9 @@ Rails.application.routes.draw do
   resources :locations
   resources :user_types
   get "/fetch_items" => 'items#from_category', as: 'fetch_items'
-  get "/fetch_users_items" => 'items#from_users', as: 'fetch_users_items'
-  post "items/search" => "items#search" , as: "search_items"
+  post "/from_search" => 'items#from_search', as: 'from_search' # search in all items
+  get "/all_items" => 'items#all_items', as: 'all_items'
+  post "/" => "items#search" , as: "search_items" #search in home page
   get "/unathorized_access" => 'shared#unathorized_access', as: 'unathorized_access'
   root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.

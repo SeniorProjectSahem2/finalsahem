@@ -12,7 +12,7 @@
 <br><br>
 <div class="text-right">
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+  <b><%= link_to "Forgot your Password?", new_password_path(resource_name) %></b>
   <br/>
 <% end -%>
 </div>

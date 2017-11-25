@@ -9,11 +9,26 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
     @categories = Category.all
+
   end
 
 def from_category
     @selected = Item.where(:category_id => params[:category_id])
     respond_to do |format|
+        format.js
+    end
+end
+def all_items
+    @items = Item.all
+    @categories = Category.all
+    respond_to do |format|
+        format.js
+    end
+end
+def from_search
+  @q = "%#{params[:query]}%"
+  @items = Item.where("name LIKE ? or description LIKE ?", @q, @q)
+  respond_to do |format|
         format.js
     end
 end

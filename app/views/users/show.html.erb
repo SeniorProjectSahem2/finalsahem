@@ -14,12 +14,19 @@
         <li><a></a></li>
         <li><a></a></li>  
 	    	<li><a></a></li> 
+	    	<% if current_user.id == @user.id %>
   			<li class="active">
           <a  href="#1" data-toggle="tab">My Profile</a>
   			</li>
   			<li><a href="#2" data-toggle="tab">Rentals Request</a></li>
   			<li><a href="#3" data-toggle="tab">My Transactions</a></li>
   			<li><a href="#4" data-toggle="tab">My Items</a></li>
+  			<% else %>
+  			<li class="active">
+  			  <a  href="#1" data-toggle="tab">Profile</a>
+  			 </li>
+  			<li><a href="#4" data-toggle="tab"><%= @user.name %>'s Items</a></li>
+  			<% end %>
   			<li><a></a></li>
         <li><a></a></li>  
 	    	<li><a></a></li> 
@@ -32,13 +39,37 @@
 			  <div class="tab-pane active" id="1">
             <div class="container-fluid text-center row" >    
               <div class="row content">
-                <div class="col-sm-12 sidenav">
+                
+                <div class="col-sm-3 sidenav">
+                </div>
+                
+                <div class="col-sm-6 sidenav">
                   <br><br>
   		            <div class="account example"></div>
   		            <br><br><br>
-  	              <%= render "profileForm" %>
+  		            <div id= "myform" class="container">
+  		              <strong id="otherUsersInfo">Name:  </strong>
+  	                <span class="otherUsersInfoValue">
+                      <%= @user.name %>
+                    </span>
+                    
+                    <p>
+                      <strong id="otherUsersInfo">Location:  </strong>
+                      
+                    </p>
+                    <% if current_user.id == @user.id %>
+                    <button type="button" class="btn btn-default" id="itemShowButt2">
+                    <%= link_to 'Edit', edit_user_path(@user) %>
+                    </button>
+                    <% end %>
+  		            </div>
+  		            
   	            	<br><br><br>
                 </div>
+                
+                <div class="col-sm-3 sidenav">
+                </div>
+                
               </div>
             </div>
 			  </div>
@@ -48,12 +79,12 @@
             <div class="row content">
               <div class="col-sm-12 sidenav">
                 <% if current_user.Rental_request.count ==0 %>
-                  <h3 id="usershowpadd">You don't have any request notifications.</h3>
+                  <h3 id="usershowpadd">You Don't Have Any Request Notifications.</h3>
                 	<br>
                 	<div class="btn-group" role="group" aria-label="userShowButtons">
-                    <button type="button" class="btn btn-default btn-lg" id="profileAddItem"><%= link_to new_item_path do %>  Add Item  <% end %></button>
+                    <button type="button" class="btn btn-default" id="itemShowButt2"><%= link_to new_item_path do %>  Add Item  <% end %></button>
                   </div>
-                  <br><br>
+                  <br><br><br>
                 <% else %>
                   <%= render :partial =>'rentals/all_requests' %>
                 <% end %>
@@ -67,11 +98,12 @@
             <div class="row content">
               <div class="col-sm-12 sidenav">
                 <% if current_user.ongoing_transaction.count ==0 %>
-                  <h3 id="usershowpadd">You don't have any transactions.</h3>
+                  <h3 id="usershowpadd">You Don't Have Any Transactions.</h3>
             		  <br>
             		  <div class="btn-group" role="group" aria-label="userShowButtons">
-                    <button type="button" class="btn btn-default btn-lg">Lend an Item</button>
+            		    <button type="button" class="btn btn-default" id="itemShowButt2"><%= link_to new_item_path do %>  Add Item  <% end %></button>
                   </div>
+                  <br><br><br>
                 <% else %>
                   <%= render :partial =>'transactions/history' %>
                 <% end %>
@@ -84,7 +116,7 @@
           <div class="container-fluid text-center row" >    
             <div class="row content">
               <div class="col-sm-12 sidenav">
-                  <%= render partial: 'items/items_list', locals: { items: Item.where(user_id: current_user.id)} %>
+                  <%= render partial: 'items/items_list', locals: { items: Item.where(user_id: @user.id)} %>
               </div>
             </div>
           </div>

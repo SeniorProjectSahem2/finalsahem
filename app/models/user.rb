@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   ##############################################################
   
   
-  
+   
   #scopes
   scope :current_borrowed_items,      ->(id) { Item.joins(:rentals).where("user_id = ?", id).where("end_date>= ?", Date.today).where("status = ?","accepted") }
   scope :past_borrowed_items,      ->(user_id) { Rental.where("user_id = ?", user_id).where("end_date<= ?", Date.today).where("status = ?","accepted") }

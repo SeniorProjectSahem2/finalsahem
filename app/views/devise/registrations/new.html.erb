@@ -38,7 +38,7 @@
   
   <div id= "myfield" class="field">
     <%= f.label :location %>* <br>
-    <%= f.select :location_id, ['Doha', 'Al Wakrah', 'Umm Salal', 'Al Shahaneya', 'Al Rayyan', 'Al Khor', 'Al Shamal'], {}, :id => "fieldsize" %>
+    <%= f.select :location_id, Location.all, {}, :id => "fieldsize" %>
   </div><br>
   
   <div id= "myfield" class="field">
